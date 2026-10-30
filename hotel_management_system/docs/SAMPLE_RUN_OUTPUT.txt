@@ -1,0 +1,1879 @@
+### Hotel Management System - main menu
+
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+[INFO] Connected to PostgreSQL successfully.
+  Connection    : Connection string from DATABASE_URL
+  Database      : hotel_db
+  User          : postgres
+  Customers     : 12
+  Rooms         : 14
+  Reservations  : 16
+  Payments      : 16
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+Thank you for using the Hotel Management System.
+
+
+### Customer Management > Add new customer
+
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+[INFO] Connected to PostgreSQL successfully.
+  Connection    : Connection string from DATABASE_URL
+  Database      : hotel_db
+  User          : postgres
+  Customers     : 12
+  Rooms         : 14
+  Reservations  : 16
+  Payments      : 16
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+============================================================================================
+ CUSTOMER MANAGEMENT
+============================================================================================
+  1. Add new customer
+  2. View all customers
+  3. Search customer (ID / name / phone)
+  4. Update customer details
+  5. Delete customer
+  0. Back to main menu
+
+Enter your choice: 
+ADD NEW CUSTOMER
+--------------------------------------------------------------------------------------------
+Enter the customer details. Press ENTER alone to cancel.
+
+Full name (q = cancel): Email (q = cancel): Phone (10 digits) (q = cancel): Address (q = cancel): ID proof type (Aadhaar, Passport, Driving Licence, Voter ID) (q = cancel): ID proof number (q = cancel): 
+[SUCCESS] Customer added successfully. New customer ID = 13
+  Customer ID    : 13
+  Name           : Aarav Krishnan
+  Registered on  : 2026-10-30 09:26
+
+Press ENTER to continue...
+============================================================================================
+ CUSTOMER MANAGEMENT
+============================================================================================
+  1. Add new customer
+  2. View all customers
+  3. Search customer (ID / name / phone)
+  4. Update customer details
+  5. Delete customer
+  0. Back to main menu
+
+Enter your choice: 
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+Thank you for using the Hotel Management System.
+
+
+### Customer Management > View all customers
+
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+[INFO] Connected to PostgreSQL successfully.
+  Connection    : Connection string from DATABASE_URL
+  Database      : hotel_db
+  User          : postgres
+  Customers     : 12
+  Rooms         : 14
+  Reservations  : 16
+  Payments      : 16
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+============================================================================================
+ CUSTOMER MANAGEMENT
+============================================================================================
+  1. Add new customer
+  2. View all customers
+  3. Search customer (ID / name / phone)
+  4. Update customer details
+  5. Delete customer
+  0. Back to main menu
+
+Enter your choice: 
+ALL CUSTOMERS
+--------------------------------------------------------------------------------------------
+
+   ID  Customer name           Phone         Email                         ID type           Address                     
+-------------------------------------------------------------------------------------------------------------------------
+    1  Arjun Kumar             9840012301    arjun.kumar@example.com       Aadhaar           12, Anna Nagar, Chennai     
+    2  Priya Raman             9840012302    priya.raman@example.com       Passport          45, T. Nagar, Chennai       
+    3  Rahul Sharma            9840012303    rahul.sharma@example.com      Driving Licence   7, MG Road, Bengaluru       
+    4  Sneha Iyer              9840012304    sneha.iyer@example.com        Aadhaar           23, Adyar, Chennai          
+    5  Vikram Nair             9840012305    vikram.nair@example.com       Voter ID          9, Marine Drive, Kochi      
+    6  Ananya Reddy            9840012306    ananya.reddy@example.com      Passport          56, Banjara Hills, Hyderabad
+    7  Karthik Raj             9840012307    karthik.raj@example.com       Aadhaar           18, Gandhipuram, Coimbatore 
+    8  Divya Menon             9840012308    divya.menon@example.com       Driving Licence   4, Kalyan Nagar, Bengaluru  
+    9  Suresh Babu             9840012309    suresh.babu@example.com       Voter ID          31, Tiruvottiyur, Chennai   
+   10  Meena Krishnan          9840012310    meena.krishnan@example.com    Aadhaar           82, Mylapore, Chennai       
+   11  Ravi Verma              9840012311    ravi.verma@example.com        Passport          14, Salt Lake, Kolkata      
+   12  Lakshmi Devi            9840012312    lakshmi.devi@example.com      Aadhaar           67, Jayanagar, Bengaluru    
+-------------------------------------------------------------------------------------------------------------------------
+(12 rows)
+
+Total customers registered: 12
+
+Press ENTER to continue...
+============================================================================================
+ CUSTOMER MANAGEMENT
+============================================================================================
+  1. Add new customer
+  2. View all customers
+  3. Search customer (ID / name / phone)
+  4. Update customer details
+  5. Delete customer
+  0. Back to main menu
+
+Enter your choice: 
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+Thank you for using the Hotel Management System.
+
+
+### Customer Management > Search customer
+
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+[INFO] Connected to PostgreSQL successfully.
+  Connection    : Connection string from DATABASE_URL
+  Database      : hotel_db
+  User          : postgres
+  Customers     : 12
+  Rooms         : 14
+  Reservations  : 16
+  Payments      : 16
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+============================================================================================
+ CUSTOMER MANAGEMENT
+============================================================================================
+  1. Add new customer
+  2. View all customers
+  3. Search customer (ID / name / phone)
+  4. Update customer details
+  5. Delete customer
+  0. Back to main menu
+
+Enter your choice: 
+SEARCH CUSTOMERS
+--------------------------------------------------------------------------------------------
+Enter customer ID, name (part of name) or phone (q = cancel): 
+   ID  Customer name           Phone         Email                         ID type           Address                     
+-------------------------------------------------------------------------------------------------------------------------
+    2  Priya Raman             9840012302    priya.raman@example.com       Passport          45, T. Nagar, Chennai       
+-------------------------------------------------------------------------------------------------------------------------
+(1 row)
+
+CUSTOMER DETAILS
+--------------------------------------------------------------------------------------------
+  Customer ID      : 2
+  Full name        : Priya Raman
+  Email            : priya.raman@example.com
+  Phone            : 9840012302
+  Address          : 45, T. Nagar, Chennai
+  ID proof type    : Passport
+  ID proof number  : PAS200000002
+  Registered on    : 2026-10-30 09:26
+  Total bookings   : 2
+
+Press ENTER to continue...
+============================================================================================
+ CUSTOMER MANAGEMENT
+============================================================================================
+  1. Add new customer
+  2. View all customers
+  3. Search customer (ID / name / phone)
+  4. Update customer details
+  5. Delete customer
+  0. Back to main menu
+
+Enter your choice: 
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+Thank you for using the Hotel Management System.
+
+
+### Room Management > View all rooms
+
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+[INFO] Connected to PostgreSQL successfully.
+  Connection    : Connection string from DATABASE_URL
+  Database      : hotel_db
+  User          : postgres
+  Customers     : 12
+  Rooms         : 14
+  Reservations  : 16
+  Payments      : 16
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+============================================================================================
+ ROOM MANAGEMENT
+============================================================================================
+  1. Add new room
+  2. View all rooms
+  3. View available rooms
+  4. View tariff / occupancy by room type
+  5. Update room details or status
+  0. Back to main menu
+
+Enter your choice: 
+ALL ROOMS
+--------------------------------------------------------------------------------------------
+
+  ID  Room    Type        Floor   Price/night   Max guests  Status      
+------------------------------------------------------------------------
+   1  101     Single          1      1,500.00            1  Available   
+   2  102     Single          1      1,500.00            1  Occupied    
+   3  103     Double          1      2,500.00            2  Available   
+   4  104     Double          1      2,500.00            2  Occupied    
+   5  105     Deluxe          2      4,000.00            3  Available   
+   6  106     Deluxe          2      4,000.00            3  Available   
+   7  107     Suite           3      7,500.00            4  Occupied    
+   8  108     Suite           3      7,500.00            4  Available   
+   9  109     Single          2      1,600.00            1  Available   
+  10  110     Double          2      2,600.00            2  Maintenance 
+  11  111     Deluxe          2      4,200.00            3  Available   
+  12  112     Suite           3      8,000.00            4  Occupied    
+  13  201     Deluxe          2      4,500.00            3  Available   
+  14  202     Double          2      2,700.00            2  Occupied    
+------------------------------------------------------------------------
+(14 rows)
+
+Total rooms: 14   Sum of tariffs: Rs. 54,600.00   Average tariff: Rs. 3,900.00
+
+Press ENTER to continue...
+============================================================================================
+ ROOM MANAGEMENT
+============================================================================================
+  1. Add new room
+  2. View all rooms
+  3. View available rooms
+  4. View tariff / occupancy by room type
+  5. Update room details or status
+  0. Back to main menu
+
+Enter your choice: 
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+Thank you for using the Hotel Management System.
+
+
+### Room Management > Tariff and availability by room type
+
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+[INFO] Connected to PostgreSQL successfully.
+  Connection    : Connection string from DATABASE_URL
+  Database      : hotel_db
+  User          : postgres
+  Customers     : 12
+  Rooms         : 14
+  Reservations  : 16
+  Payments      : 16
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+============================================================================================
+ ROOM MANAGEMENT
+============================================================================================
+  1. Add new room
+  2. View all rooms
+  3. View available rooms
+  4. View tariff / occupancy by room type
+  5. Update room details or status
+  0. Back to main menu
+
+Enter your choice: 
+TARIFF AND AVAILABILITY BY ROOM TYPE
+--------------------------------------------------------------------------------------------
+
+Room type    Total   Available   Occupied    Min price    Max price    Avg price
+--------------------------------------------------------------------------------
+Single           3           2          1     1,500.00     1,600.00     1,533.33
+Double           4           1          2     2,500.00     2,700.00     2,575.00
+Deluxe           4           4          0     4,000.00     4,500.00     4,175.00
+Suite            3           1          2     7,500.00     8,000.00     7,666.67
+--------------------------------------------------------------------------------
+(4 rows)
+
+Press ENTER to continue...
+============================================================================================
+ ROOM MANAGEMENT
+============================================================================================
+  1. Add new room
+  2. View all rooms
+  3. View available rooms
+  4. View tariff / occupancy by room type
+  5. Update room details or status
+  0. Back to main menu
+
+Enter your choice: 
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+Thank you for using the Hotel Management System.
+
+
+### Reservation > Check room availability
+
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+[INFO] Connected to PostgreSQL successfully.
+  Connection    : Connection string from DATABASE_URL
+  Database      : hotel_db
+  User          : postgres
+  Customers     : 12
+  Rooms         : 14
+  Reservations  : 16
+  Payments      : 16
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+============================================================================================
+ RESERVATION MANAGEMENT
+============================================================================================
+  1. Book a room
+  2. Check availability for dates
+  3. View reservations
+  4. View one reservation (with payment)
+  5. Cancel a reservation
+  0. Back to main menu
+
+Enter your choice: 
+CHECK ROOM AVAILABILITY
+--------------------------------------------------------------------------------------------
+Check-in date (YYYY-MM-DD) [2026-10-30] (q = cancel): Check-out date (YYYY-MM-DD) [2026-12-03] (q = cancel): 
+Stay: 2026-12-01 to 2026-12-03  (2 night(s))
+
+  ID  Room    Type        Floor   Max guests   Price/night
+----------------------------------------------------------
+   1  101     Single          1            1      1,500.00
+   2  102     Single          1            1      1,500.00
+   9  109     Single          2            1      1,600.00
+   3  103     Double          1            2      2,500.00
+   4  104     Double          1            2      2,500.00
+  14  202     Double          2            2      2,700.00
+   5  105     Deluxe          2            3      4,000.00
+   6  106     Deluxe          2            3      4,000.00
+  11  111     Deluxe          2            3      4,200.00
+  13  201     Deluxe          2            3      4,500.00
+   7  107     Suite           3            4      7,500.00
+   8  108     Suite           3            4      7,500.00
+  12  112     Suite           3            4      8,000.00
+----------------------------------------------------------
+(13 rows)
+
+13 room(s) available for these dates.
+Room is blocked if a 'Booked' or 'CheckedIn' reservation overlaps
+the requested dates; cancelled reservations do not block a room.
+
+Press ENTER to continue...
+============================================================================================
+ RESERVATION MANAGEMENT
+============================================================================================
+  1. Book a room
+  2. Check availability for dates
+  3. View reservations
+  4. View one reservation (with payment)
+  5. Cancel a reservation
+  0. Back to main menu
+
+Enter your choice: 
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+Thank you for using the Hotel Management System.
+
+
+### Reservation > Book a room
+
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+[INFO] Connected to PostgreSQL successfully.
+  Connection    : Connection string from DATABASE_URL
+  Database      : hotel_db
+  User          : postgres
+  Customers     : 12
+  Rooms         : 14
+  Reservations  : 16
+  Payments      : 16
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+============================================================================================
+ RESERVATION MANAGEMENT
+============================================================================================
+  1. Book a room
+  2. Check availability for dates
+  3. View reservations
+  4. View one reservation (with payment)
+  5. Cancel a reservation
+  0. Back to main menu
+
+Enter your choice: 
+BOOK A ROOM
+--------------------------------------------------------------------------------------------
+
+Step 1: select the customer
+Customer ID / phone / name (q = cancel): 
+[INFO] Selected customer: Karthik Raj (ID 7, phone 9840012307)
+
+Step 2: stay details
+Check-in date (YYYY-MM-DD) [2026-10-30] (q = cancel): Check-out date (YYYY-MM-DD) [2026-12-03] (q = cancel): Number of guests [1] (q = cancel): 
+Step 3: choose a room (3 night(s), 2026-12-01 to 2026-12-04)
+
+Rooms free for these dates:
+
+    ID  Room    Type       Guests   Price/night    Stay total
+  --------------------------------------------------------------
+     3  103     Double          2      2,500.00      7,500.00
+     4  104     Double          2      2,500.00      7,500.00
+    14  202     Double          2      2,700.00      8,100.00
+     5  105     Deluxe          3      4,000.00     12,000.00
+     6  106     Deluxe          3      4,000.00     12,000.00
+    11  111     Deluxe          3      4,200.00     12,600.00
+    13  201     Deluxe          3      4,500.00     13,500.00
+     7  107     Suite           4      7,500.00     22,500.00
+     8  108     Suite           4      7,500.00     22,500.00
+    12  112     Suite           4      8,000.00     24,000.00
+Enter the Room ID to book (q = cancel): 
+Step 4: bill preview
+  --------------------------------------------------
+  Room                : 201 (Deluxe)
+  Price per night     : Rs. 4,500.00
+  Number of nights    : 3
+  Total booking amount: Rs. 13,500.00
+  --------------------------------------------------
+Confirm this booking? (y/n): 
+[SUCCESS] Reservation confirmed. Reservation ID = 17
+
+  Reservation ID   : 17
+  Customer ID      : 7
+  Customer         : Karthik Raj
+  Phone            : 9840012307
+  Room             : 201
+  Room type        : Deluxe
+  Price per night  : 4,500.00
+  Check-in date    : 2026-12-01
+  Check-out date   : 2026-12-04
+  Nights           : 3
+  Guests           : 2
+  Total amount     : 13,500.00
+  Reservation status: Booked
+  Payment status   : Pending
+
+The payment is recorded as 'Pending'. Use Payment Management
+to record the money received.
+
+Press ENTER to continue...
+============================================================================================
+ RESERVATION MANAGEMENT
+============================================================================================
+  1. Book a room
+  2. Check availability for dates
+  3. View reservations
+  4. View one reservation (with payment)
+  5. Cancel a reservation
+  0. Back to main menu
+
+Enter your choice: 
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+Thank you for using the Hotel Management System.
+
+
+### Reservation > View one reservation with payment
+
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+[INFO] Connected to PostgreSQL successfully.
+  Connection    : Connection string from DATABASE_URL
+  Database      : hotel_db
+  User          : postgres
+  Customers     : 12
+  Rooms         : 14
+  Reservations  : 16
+  Payments      : 16
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+============================================================================================
+ RESERVATION MANAGEMENT
+============================================================================================
+  1. Book a room
+  2. Check availability for dates
+  3. View reservations
+  4. View one reservation (with payment)
+  5. Cancel a reservation
+  0. Back to main menu
+
+Enter your choice: 
+RESERVATION DETAILS
+--------------------------------------------------------------------------------------------
+Reservation ID (q = cancel): 
+  Reservation ID   : 7
+  Customer ID      : 7
+  Customer         : Karthik Raj
+  Phone            : 9840012307
+  Room             : 108
+  Room type        : Suite
+  Price per night  : 7,500.00
+  Check-in date    : 2026-11-06
+  Check-out date   : 2026-11-08
+  Nights           : 2
+  Guests           : 3
+  Total amount     : 15,000.00
+  Reservation status: Booked
+  Payment status   : Pending
+
+Payment record:
+  Payment ID       : 7
+  Reservation      : 7
+  Customer         : Karthik Raj
+  Room             : 108
+  Amount           : 15,000.00
+  Method           : UPI
+  Status           : Pending
+  Date             : 2026-10-30 09:50
+  Reference        : TXN60000007
+
+Press ENTER to continue...
+============================================================================================
+ RESERVATION MANAGEMENT
+============================================================================================
+  1. Book a room
+  2. Check availability for dates
+  3. View reservations
+  4. View one reservation (with payment)
+  5. Cancel a reservation
+  0. Back to main menu
+
+Enter your choice: 
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+Thank you for using the Hotel Management System.
+
+
+### Check-in / Check-out > Record check-in
+
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+[INFO] Connected to PostgreSQL successfully.
+  Connection    : Connection string from DATABASE_URL
+  Database      : hotel_db
+  User          : postgres
+  Customers     : 12
+  Rooms         : 14
+  Reservations  : 16
+  Payments      : 16
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+============================================================================================
+ CHECK-IN / CHECK-OUT MANAGEMENT
+============================================================================================
+  1. Record check-in
+  2. Record check-out
+  3. Show today's expected check-ins
+  4. Show today's expected check-outs
+  0. Back to main menu
+
+Enter your choice: 
+RECORD CUSTOMER CHECK-IN
+--------------------------------------------------------------------------------------------
+Reservation ID (q = cancel): 
+  Reservation ID   : 15
+  Customer ID      : 9
+  Customer         : Suresh Babu
+  Phone            : 9840012309
+  Room             : 201
+  Room type        : Deluxe
+  Price per night  : 4,500.00
+  Check-in date    : 2026-10-30
+  Check-out date   : 2026-11-01
+  Nights           : 2
+  Guests           : 2
+  Total amount     : 9,000.00
+  Reservation status: Booked
+  Payment status   : Pending
+Check in Suresh Babu to room 201? (y/n): 
+[SUCCESS] Check-in recorded for reservation 15.
+  Guest               : Suresh Babu
+  Room                : 201 (Deluxe)
+  Check-in            : 2026-10-30
+  Planned check-out   : 2026-11-01
+  Room status         : Occupied
+  Reservation status  : CheckedIn
+
+[WARNING] Payment for this reservation is 'Pending'.
+Record the payment now? (y/n): 
+Reservation to be paid:
+  Reservation ID   : 15
+  Customer ID      : 9
+  Customer         : Suresh Babu
+  Phone            : 9840012309
+  Room             : 201
+  Room type        : Deluxe
+  Price per night  : 4,500.00
+  Check-in         : 2026-10-30
+  Check-out        : 2026-11-01
+  Nights           : 2
+  Guests           : 2
+  Bill amount      : 9,000.00
+  Status           : CheckedIn
+  Payment status   : Pending
+Payment method (Cash, Card, UPI) (q = cancel): Collect Rs. 9,000.00 by Cash? (y/n): 
+[SUCCESS] Payment of Rs. 9,000.00 recorded as Paid (Cash).
+  Payment ID       : 15
+  Reservation      : 15
+  Customer         : Suresh Babu
+  Room             : 201
+  Amount           : 9,000.00
+  Method           : Cash
+  Status           : Paid
+  Date             : 2026-10-30 09:26
+  Reference        : -
+
+Press ENTER to continue...
+============================================================================================
+ CHECK-IN / CHECK-OUT MANAGEMENT
+============================================================================================
+  1. Record check-in
+  2. Record check-out
+  3. Show today's expected check-ins
+  4. Show today's expected check-outs
+  0. Back to main menu
+
+Enter your choice: 
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+Thank you for using the Hotel Management System.
+
+
+### Check-in / Check-out > Record check-out
+
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+[INFO] Connected to PostgreSQL successfully.
+  Connection    : Connection string from DATABASE_URL
+  Database      : hotel_db
+  User          : postgres
+  Customers     : 12
+  Rooms         : 14
+  Reservations  : 16
+  Payments      : 16
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+============================================================================================
+ CHECK-IN / CHECK-OUT MANAGEMENT
+============================================================================================
+  1. Record check-in
+  2. Record check-out
+  3. Show today's expected check-ins
+  4. Show today's expected check-outs
+  0. Back to main menu
+
+Enter your choice: 
+RECORD CUSTOMER CHECK-IN
+--------------------------------------------------------------------------------------------
+Reservation ID (q = cancel): 
+  Reservation ID   : 15
+  Customer ID      : 9
+  Customer         : Suresh Babu
+  Phone            : 9840012309
+  Room             : 201
+  Room type        : Deluxe
+  Price per night  : 4,500.00
+  Check-in date    : 2026-10-30
+  Check-out date   : 2026-11-01
+  Nights           : 2
+  Guests           : 2
+  Total amount     : 9,000.00
+  Reservation status: Booked
+  Payment status   : Pending
+Check in Suresh Babu to room 201? (y/n): 
+[SUCCESS] Check-in recorded for reservation 15.
+  Guest               : Suresh Babu
+  Room                : 201 (Deluxe)
+  Check-in            : 2026-10-30
+  Planned check-out   : 2026-11-01
+  Room status         : Occupied
+  Reservation status  : CheckedIn
+
+[WARNING] Payment for this reservation is 'Pending'.
+Record the payment now? (y/n): 
+Reservation to be paid:
+  Reservation ID   : 15
+  Customer ID      : 9
+  Customer         : Suresh Babu
+  Phone            : 9840012309
+  Room             : 201
+  Room type        : Deluxe
+  Price per night  : 4,500.00
+  Check-in         : 2026-10-30
+  Check-out        : 2026-11-01
+  Nights           : 2
+  Guests           : 2
+  Bill amount      : 9,000.00
+  Status           : CheckedIn
+  Payment status   : Pending
+Payment method (Cash, Card, UPI) (q = cancel): Collect Rs. 9,000.00 by Cash? (y/n): 
+[SUCCESS] Payment of Rs. 9,000.00 recorded as Paid (Cash).
+  Payment ID       : 15
+  Reservation      : 15
+  Customer         : Suresh Babu
+  Room             : 201
+  Amount           : 9,000.00
+  Method           : Cash
+  Status           : Paid
+  Date             : 2026-10-30 09:26
+  Reference        : -
+
+Press ENTER to continue...
+============================================================================================
+ CHECK-IN / CHECK-OUT MANAGEMENT
+============================================================================================
+  1. Record check-in
+  2. Record check-out
+  3. Show today's expected check-ins
+  4. Show today's expected check-outs
+  0. Back to main menu
+
+Enter your choice: 
+RECORD CUSTOMER CHECK-OUT
+--------------------------------------------------------------------------------------------
+Reservation ID (q = cancel): 
+  Reservation ID   : 15
+  Customer ID      : 9
+  Customer         : Suresh Babu
+  Phone            : 9840012309
+  Room             : 201
+  Room type        : Deluxe
+  Price per night  : 4,500.00
+  Check-in date    : 2026-10-30
+  Check-out date   : 2026-11-01
+  Nights           : 2
+  Guests           : 2
+  Total amount     : 9,000.00
+  Reservation status: CheckedIn
+  Payment status   : Paid
+
+Final bill
+  ----------------------------------------------
+  Room charge        : Rs. 9,000.00
+  Payment status     : Paid
+  ----------------------------------------------
+Check out Suresh Babu from room 201? (y/n): 
+[SUCCESS] Check-out recorded for reservation 15.
+  Guest               : Suresh Babu
+  Room                : 201 (Deluxe)
+  Amount billed       : 9,000.00
+  Payment status      : Paid
+  Room status         : Available (free for the next guest)
+  Reservation status  : CheckedOut
+
+Press ENTER to continue...
+============================================================================================
+ CHECK-IN / CHECK-OUT MANAGEMENT
+============================================================================================
+  1. Record check-in
+  2. Record check-out
+  3. Show today's expected check-ins
+  4. Show today's expected check-outs
+  0. Back to main menu
+
+Enter your choice: 
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+Thank you for using the Hotel Management System.
+
+
+### Payment Management > Pending payments
+
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+[INFO] Connected to PostgreSQL successfully.
+  Connection    : Connection string from DATABASE_URL
+  Database      : hotel_db
+  User          : postgres
+  Customers     : 12
+  Rooms         : 14
+  Reservations  : 16
+  Payments      : 16
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+============================================================================================
+ PAYMENT MANAGEMENT
+============================================================================================
+  1. Record a payment for a reservation
+  2. View payment details
+  3. Show pending payments
+  4. Mark a payment as refunded
+  0. Back to main menu
+
+Enter your choice: 
+PAYMENTS STILL PENDING
+--------------------------------------------------------------------------------------------
+
+Pay ID   Resv  Customer            Room         Amount  Method    Status      Paid on           Reference    
+-------------------------------------------------------------------------------------------------------------
+     5      5  Vikram Nair         101        3,000.00  Cash      Pending     2026-10-29 11:00  -            
+     6      6  Ananya Reddy        105       16,000.00  Card      Pending     2026-10-28 13:30  TXN60000006  
+     7      7  Karthik Raj         108       15,000.00  UPI       Pending     2026-10-30 09:50  TXN60000007  
+     8      8  Divya Menon         112       32,000.00  Card      Pending     2026-10-27 20:10  TXN60000008  
+     9      9  Suresh Babu         106        8,000.00  Cash      Pending     2026-10-29 15:45  -            
+    15     15  Suresh Babu         201        9,000.00  Cash      Pending     2026-10-29 17:10  -            
+-------------------------------------------------------------------------------------------------------------
+(6 rows)
+
+Outstanding amount: Rs. 83,000.00
+
+Press ENTER to continue...
+============================================================================================
+ PAYMENT MANAGEMENT
+============================================================================================
+  1. Record a payment for a reservation
+  2. View payment details
+  3. Show pending payments
+  4. Mark a payment as refunded
+  0. Back to main menu
+
+Enter your choice: 
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+Thank you for using the Hotel Management System.
+
+
+### Payment Management > Record a payment
+
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+[INFO] Connected to PostgreSQL successfully.
+  Connection    : Connection string from DATABASE_URL
+  Database      : hotel_db
+  User          : postgres
+  Customers     : 12
+  Rooms         : 14
+  Reservations  : 16
+  Payments      : 16
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+============================================================================================
+ PAYMENT MANAGEMENT
+============================================================================================
+  1. Record a payment for a reservation
+  2. View payment details
+  3. Show pending payments
+  4. Mark a payment as refunded
+  0. Back to main menu
+
+Enter your choice: 
+RECORD A PAYMENT
+--------------------------------------------------------------------------------------------
+Reservation ID (q = cancel): 
+Reservation to be paid:
+  Reservation ID   : 6
+  Customer ID      : 6
+  Customer         : Ananya Reddy
+  Phone            : 9840012306
+  Room             : 105
+  Room type        : Deluxe
+  Price per night  : 4,000.00
+  Check-in         : 2026-11-01
+  Check-out        : 2026-11-05
+  Nights           : 4
+  Guests           : 2
+  Bill amount      : 16,000.00
+  Status           : Booked
+  Payment status   : Pending
+Payment method (Cash, Card, UPI) (q = cancel): Transaction reference (press ENTER to skip) (q = cancel): Collect Rs. 16,000.00 by Card? (y/n): 
+[SUCCESS] Payment of Rs. 16,000.00 recorded as Paid (Card).
+  Payment ID       : 6
+  Reservation      : 6
+  Customer         : Ananya Reddy
+  Room             : 105
+  Amount           : 16,000.00
+  Method           : Card
+  Status           : Paid
+  Date             : 2026-10-30 09:26
+  Reference        : TXN99887766
+
+Press ENTER to continue...
+============================================================================================
+ PAYMENT MANAGEMENT
+============================================================================================
+  1. Record a payment for a reservation
+  2. View payment details
+  3. Show pending payments
+  4. Mark a payment as refunded
+  0. Back to main menu
+
+Enter your choice: 
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+Thank you for using the Hotel Management System.
+
+
+### Reports > All reservations
+
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+[INFO] Connected to PostgreSQL successfully.
+  Connection    : Connection string from DATABASE_URL
+  Database      : hotel_db
+  User          : postgres
+  Customers     : 12
+  Rooms         : 14
+  Reservations  : 16
+  Payments      : 16
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+============================================================================================
+ REPORTS AND SEARCH
+============================================================================================
+  1. All reservations
+  2. Currently occupied rooms
+  3. Available rooms
+  4. Customer booking history (all customers)
+  5. Booking history of one customer
+  6. Total hotel revenue
+  7. Most frequently booked room type
+  8. Room status / occupancy summary
+  9. Search reservations
+  0. Back to main menu
+
+Enter your choice: 
+REPORT 1: ALL RESERVATIONS
+--------------------------------------------------------------------------------------------
+
+ Resv  Customer            Room    Type      Check-in     Check-out    Nights       Amount  Status       Payment    
+--------------------------------------------------------------------------------------------------------------------
+    1  Arjun Kumar         102     Single    2026-10-28   2026-11-01        4     6,000.00  CheckedIn    Paid       
+    2  Priya Raman         104     Double    2026-10-29   2026-11-02        4    10,000.00  CheckedIn    Paid       
+    3  Rahul Sharma        107     Suite     2026-10-27   2026-10-31        4    30,000.00  CheckedIn    Paid       
+    4  Sneha Iyer          202     Double    2026-10-26   2026-11-01        6    16,200.00  CheckedIn    Paid       
+    5  Vikram Nair         101     Single    2026-11-02   2026-11-04        2     3,000.00  Booked       Pending    
+    6  Ananya Reddy        105     Deluxe    2026-11-01   2026-11-05        4    16,000.00  Booked       Pending    
+    7  Karthik Raj         108     Suite     2026-11-06   2026-11-08        2    15,000.00  Booked       Pending    
+    8  Divya Menon         112     Suite     2026-11-09   2026-11-13        4    32,000.00  Booked       Pending    
+    9  Suresh Babu         106     Deluxe    2026-10-31   2026-11-02        2     8,000.00  Booked       Pending    
+   10  Meena Krishnan      103     Double    2026-10-18   2026-10-21        3     7,500.00  CheckedOut   Paid       
+   11  Arjun Kumar         105     Deluxe    2026-10-10   2026-10-13        3    12,000.00  CheckedOut   Paid       
+   12  Ravi Verma          111     Deluxe    2026-10-15   2026-10-17        2     8,400.00  CheckedOut   Paid       
+   13  Lakshmi Devi        101     Single    2026-10-22   2026-10-24        2     3,000.00  CheckedOut   Paid       
+   14  Priya Raman         109     Single    2026-11-03   2026-11-05        2     3,200.00  Cancelled    Refunded   
+   15  Suresh Babu         201     Deluxe    2026-10-30   2026-11-01        2     9,000.00  Booked       Pending    
+   16  Vikram Nair         112     Suite     2026-10-29   2026-10-30        1     8,000.00  CheckedIn    Paid       
+--------------------------------------------------------------------------------------------------------------------
+(16 rows)
+
+Booking value (excluding cancelled): Rs. 184,100.00
+
+Press ENTER to continue...
+============================================================================================
+ REPORTS AND SEARCH
+============================================================================================
+  1. All reservations
+  2. Currently occupied rooms
+  3. Available rooms
+  4. Customer booking history (all customers)
+  5. Booking history of one customer
+  6. Total hotel revenue
+  7. Most frequently booked room type
+  8. Room status / occupancy summary
+  9. Search reservations
+  0. Back to main menu
+
+Enter your choice: 
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+Thank you for using the Hotel Management System.
+
+
+### Reports > Currently occupied rooms
+
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+[INFO] Connected to PostgreSQL successfully.
+  Connection    : Connection string from DATABASE_URL
+  Database      : hotel_db
+  User          : postgres
+  Customers     : 12
+  Rooms         : 14
+  Reservations  : 16
+  Payments      : 16
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+============================================================================================
+ REPORTS AND SEARCH
+============================================================================================
+  1. All reservations
+  2. Currently occupied rooms
+  3. Available rooms
+  4. Customer booking history (all customers)
+  5. Booking history of one customer
+  6. Total hotel revenue
+  7. Most frequently booked room type
+  8. Room status / occupancy summary
+  9. Search reservations
+  0. Back to main menu
+
+Enter your choice: 
+REPORT 2: CURRENTLY OCCUPIED ROOMS
+--------------------------------------------------------------------------------------------
+
+Room    Type       Guest               Phone        Check-in     Check-out    Days left      Tariff
+---------------------------------------------------------------------------------------------------
+102     Single     Arjun Kumar         9840012301   2026-10-28   2026-11-01           2    1,500.00
+104     Double     Priya Raman         9840012302   2026-10-29   2026-11-02           3    2,500.00
+107     Suite      Rahul Sharma        9840012303   2026-10-27   2026-10-31           1    7,500.00
+112     Suite      Vikram Nair         9840012305   2026-10-29   2026-10-30           0    8,000.00
+202     Double     Sneha Iyer          9840012304   2026-10-26   2026-11-01           2    2,700.00
+---------------------------------------------------------------------------------------------------
+(5 rows)
+
+Occupancy: 5 of 14 rooms (35.7%)
+
+Press ENTER to continue...
+============================================================================================
+ REPORTS AND SEARCH
+============================================================================================
+  1. All reservations
+  2. Currently occupied rooms
+  3. Available rooms
+  4. Customer booking history (all customers)
+  5. Booking history of one customer
+  6. Total hotel revenue
+  7. Most frequently booked room type
+  8. Room status / occupancy summary
+  9. Search reservations
+  0. Back to main menu
+
+Enter your choice: 
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+Thank you for using the Hotel Management System.
+
+
+### Reports > Customer booking history
+
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+[INFO] Connected to PostgreSQL successfully.
+  Connection    : Connection string from DATABASE_URL
+  Database      : hotel_db
+  User          : postgres
+  Customers     : 12
+  Rooms         : 14
+  Reservations  : 16
+  Payments      : 16
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+============================================================================================
+ REPORTS AND SEARCH
+============================================================================================
+  1. All reservations
+  2. Currently occupied rooms
+  3. Available rooms
+  4. Customer booking history (all customers)
+  5. Booking history of one customer
+  6. Total hotel revenue
+  7. Most frequently booked room type
+  8. Room status / occupancy summary
+  9. Search reservations
+  0. Back to main menu
+
+Enter your choice: 
+REPORT 4: CUSTOMER BOOKING HISTORY
+--------------------------------------------------------------------------------------------
+
+  ID  Customer              Phone         Bookings   Completed   Cancelled    Total spent
+-----------------------------------------------------------------------------------------
+   8  Divya Menon           9840012308           1           0           0      32,000.00
+   3  Rahul Sharma          9840012303           1           0           0      30,000.00
+   1  Arjun Kumar           9840012301           2           1           0      18,000.00
+   9  Suresh Babu           9840012309           2           0           0      17,000.00
+   4  Sneha Iyer            9840012304           1           0           0      16,200.00
+   6  Ananya Reddy          9840012306           1           0           0      16,000.00
+   7  Karthik Raj           9840012307           1           0           0      15,000.00
+   5  Vikram Nair           9840012305           2           0           0      11,000.00
+   2  Priya Raman           9840012302           2           0           1      10,000.00
+  11  Ravi Verma            9840012311           1           1           0       8,400.00
+  10  Meena Krishnan        9840012310           1           1           0       7,500.00
+  12  Lakshmi Devi          9840012312           1           1           0       3,000.00
+-----------------------------------------------------------------------------------------
+(12 rows)
+
+Press ENTER to continue...
+============================================================================================
+ REPORTS AND SEARCH
+============================================================================================
+  1. All reservations
+  2. Currently occupied rooms
+  3. Available rooms
+  4. Customer booking history (all customers)
+  5. Booking history of one customer
+  6. Total hotel revenue
+  7. Most frequently booked room type
+  8. Room status / occupancy summary
+  9. Search reservations
+  0. Back to main menu
+
+Enter your choice: 
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+Thank you for using the Hotel Management System.
+
+
+### Reports > Total hotel revenue
+
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+[INFO] Connected to PostgreSQL successfully.
+  Connection    : Connection string from DATABASE_URL
+  Database      : hotel_db
+  User          : postgres
+  Customers     : 12
+  Rooms         : 14
+  Reservations  : 16
+  Payments      : 16
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+============================================================================================
+ REPORTS AND SEARCH
+============================================================================================
+  1. All reservations
+  2. Currently occupied rooms
+  3. Available rooms
+  4. Customer booking history (all customers)
+  5. Booking history of one customer
+  6. Total hotel revenue
+  7. Most frequently booked room type
+  8. Room status / occupancy summary
+  9. Search reservations
+  0. Back to main menu
+
+Enter your choice: 
+REPORT 5: TOTAL HOTEL REVENUE
+--------------------------------------------------------------------------------------------
+Revenue collected (payments with status = Paid)
+
+  ----------------------------------------------------
+  Number of paid transactions : 9
+  Total revenue               : Rs. 101,100.00
+  Average payment             : Rs. 11,233.33
+  Smallest payment            : Rs. 3,000.00
+  Largest payment             : Rs. 30,000.00
+  ----------------------------------------------------
+
+Revenue by payment method (GROUP BY)
+
+Method     Transactions        Revenue
+--------------------------------------
+Card                  3      44,400.00
+UPI                   4      28,500.00
+Cash                  2      28,200.00
+--------------------------------------
+(3 rows)
+
+Revenue by month (GROUP BY on payment_date)
+
+Month          Transactions        Revenue
+------------------------------------------
+Oct 2026                  9     101,100.00
+------------------------------------------
+(1 row)
+
+Pending amount : Rs. 83,000.00
+Refunded amount: Rs. 3,200.00
+
+Press ENTER to continue...
+============================================================================================
+ REPORTS AND SEARCH
+============================================================================================
+  1. All reservations
+  2. Currently occupied rooms
+  3. Available rooms
+  4. Customer booking history (all customers)
+  5. Booking history of one customer
+  6. Total hotel revenue
+  7. Most frequently booked room type
+  8. Room status / occupancy summary
+  9. Search reservations
+  0. Back to main menu
+
+Enter your choice: 
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+Thank you for using the Hotel Management System.
+
+
+### Reports > Most frequently booked room type
+
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+[INFO] Connected to PostgreSQL successfully.
+  Connection    : Connection string from DATABASE_URL
+  Database      : hotel_db
+  User          : postgres
+  Customers     : 12
+  Rooms         : 14
+  Reservations  : 16
+  Payments      : 16
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+============================================================================================
+ REPORTS AND SEARCH
+============================================================================================
+  1. All reservations
+  2. Currently occupied rooms
+  3. Available rooms
+  4. Customer booking history (all customers)
+  5. Booking history of one customer
+  6. Total hotel revenue
+  7. Most frequently booked room type
+  8. Room status / occupancy summary
+  9. Search reservations
+  0. Back to main menu
+
+Enter your choice: 
+REPORT 6: MOST FREQUENTLY BOOKED ROOM TYPE
+--------------------------------------------------------------------------------------------
+
+Room type    Times booked    Booking value
+------------------------------------------
+Deluxe                  5        53,400.00
+Suite                   4        85,000.00
+Double                  3        33,700.00
+Single                  3        12,000.00
+------------------------------------------
+(4 rows)
+
+Most frequently booked room type: Deluxe (5 confirmed bookings)
+
+Press ENTER to continue...
+============================================================================================
+ REPORTS AND SEARCH
+============================================================================================
+  1. All reservations
+  2. Currently occupied rooms
+  3. Available rooms
+  4. Customer booking history (all customers)
+  5. Booking history of one customer
+  6. Total hotel revenue
+  7. Most frequently booked room type
+  8. Room status / occupancy summary
+  9. Search reservations
+  0. Back to main menu
+
+Enter your choice: 
+
+
+============================================================================================
+  HOTEL MANAGEMENT SYSTEM   (Database Systems Mini Project - v1.0)
+  Python 3 + PostgreSQL + psycopg2
+============================================================================================
+
+============================================================================================
+ MAIN MENU
+============================================================================================
+  1. Customer Management
+  2. Room Management
+  3. Reservation Management
+  4. Check-in / Check-out
+  5. Payment Management
+  6. Reports and Search
+  7. Database connection information
+  0. Exit
+
+Enter your choice: 
+Thank you for using the Hotel Management System.

@@ -1,3 +1,7 @@
+> **Database Systems (DBS) mini project:** the complete Hotel Management
+> System (Python + PostgreSQL + psycopg2) lives in
+> [`hotel_management_system/`](hotel_management_system/README.md).
+
 # MediVault — Your health history. Always with you.
 
 A responsive healthcare-records hackathon demo that brings patient and doctor workflows into one consent-first app. **The dataset is fictional. This is not a certified clinical system or medical advice.**
