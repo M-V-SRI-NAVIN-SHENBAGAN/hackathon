@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{{TITLE}}</title>
+<link rel="stylesheet" href="assets/css/site.css" />
+<style>
+  @media print {
+    .report-top { display: none; }
+    .report-body { padding: 0; max-width: none; }
+    .report-body h2 { page-break-after: avoid; }
+    .report-body pre, .report-body table, .report-body img { page-break-inside: avoid; }
+    a { color: inherit; text-decoration: none; }
+  }
+</style>
+</head>
+<body class="report-page">
+  <div class="report-top">
+    <div class="inner">
+      <a href="index.html">← Back to the project site</a>
+      <div class="actions">
+        <button class="btn btn-gold btn-sm" onclick="window.print()">Print / save as PDF</button>
+        <a class="btn btn-ghost btn-sm" href="downloads/docs/PROJECT_REPORT.docx">Word version</a>
+      </div>
+    </div>
+  </div>
+  <article class="report-body">
+{{CONTENT}}
+  </article>
+</body>
+</html>

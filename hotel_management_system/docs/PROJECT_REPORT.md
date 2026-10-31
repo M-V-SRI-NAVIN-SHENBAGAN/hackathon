@@ -888,6 +888,38 @@ DB_PASSWORD=postgres
 
 Passwords are never written inside the Python source files.
 
+### 12.4 Project website (single place for everything)
+
+The `website/` folder contains a static, dependency-free website that
+combines every deliverable of the project in one place:
+
+| Page / section | Content |
+|---|---|
+| Overview | Abstract, objectives, modules, existing vs proposed system, setup |
+| Database design | ER diagram, relational schema, constraints, normalization (1NF–3NF) |
+| SQL scripts | The four `.sql` files with line numbers and syntax highlighting |
+| Query gallery | 15 key queries with their **live** PostgreSQL result tables |
+| Application code | All ten Python files, the architecture diagram and the coding techniques |
+| Live demo | A browser simulation of the program on the sample data, showing the equivalent parameterized SQL for every action |
+| Screenshots | The 21 console screenshots with captions |
+| All files | Every script, source file, report and image, ready to download |
+
+The website is **generated from the project files and the database**, never
+edited by hand, so it cannot disagree with the code:
+
+```bash
+# 1. make sure the database is loaded (sql/01_schema.sql + sql/02_sample_data.sql)
+# 2. build the site  (needs psycopg2 + markdown)
+python docs/tools/build_website.py
+
+# 3. serve it locally and open http://localhost:8080
+python -m http.server 8080 --directory website
+```
+
+The site is a convenient way to show the project during the viva: the live
+demo works without PostgreSQL, and the SQL log printed next to every action
+makes the database interaction visible on screen.
+
 ---
 
 ## 13. Screenshots and sample outputs
@@ -1207,15 +1239,23 @@ hotel_management_system/
 │   ├── frontdesk.py           module 4 - check-in / check-out
 │   ├── payments.py            module 5 - payment management
 │   └── reports.py             module 6 - reports and search
-└── docs/
-    ├── PROJECT_REPORT.md      this report
-    ├── PROJECT_REPORT.docx    the same report, ready to print
-    ├── ER_DIAGRAM.png / .svg  ER diagram
-    ├── SAMPLE_RUN_OUTPUT.txt  text transcript of a demo session
-    ├── screenshots/           21 screenshots used in this report
-    └── tools/
-        ├── make_er_diagram.py generate the ER diagram
-        └── make_screenshots.py regenerate the screenshots
+├── docs/
+│   ├── PROJECT_REPORT.md      this report
+│   ├── PROJECT_REPORT.docx    the same report, ready to print
+│   ├── ER_DIAGRAM.png / .svg  ER diagram
+│   ├── SAMPLE_RUN_OUTPUT.txt  text transcript of a demo session
+│   ├── screenshots/           21 screenshots used in this report
+│   └── tools/
+│       ├── make_er_diagram.py generate the ER diagram
+│       ├── make_screenshots.py regenerate the screenshots
+│       ├── make_report_docx.py convert this report to Word
+│       └── build_website.py   generate the project website
+└── website/
+    ├── index.html             one-page project site (generated data)
+    ├── report.html            this report, rendered for the browser
+    ├── assets/                CSS, JavaScript, generated project data
+    ├── screenshots/           copies used by the site
+    └── downloads/             every project file, ready to download
 ```
 
 ---

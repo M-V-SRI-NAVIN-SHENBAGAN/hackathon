@@ -1,6 +1,9 @@
 > **Database Systems (DBS) mini project:** the complete Hotel Management
 > System (Python + PostgreSQL + psycopg2) lives in
 > [`hotel_management_system/`](hotel_management_system/README.md).
+> The project website (schema, SQL, code, screenshots, live demo) is in
+> [`hotel_management_system/website/`](hotel_management_system/website/index.html)
+> — serve it with `python -m http.server 8080 --directory hotel_management_system/website`.
 
 # MediVault — Your health history. Always with you.
 

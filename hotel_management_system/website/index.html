@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hotel Management System · Database Systems Mini Project</title>
+<meta name="description" content="Complete Database Systems mini project: PostgreSQL schema, 34 SQL queries, ER diagram and a working Python/psycopg2 application — with an interactive browser demo." />
+<link rel="stylesheet" href="assets/css/site.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230c1c2c'/><text y='72' x='50' font-size='58' text-anchor='middle' fill='%23d8b45a' font-family='Georgia'>H</text></svg>" />
+</head>
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <span class="brand-mark">H</span>
+    <span class="brand-text">
+      <strong>Hotel&nbsp;Management</strong>
+      <small>DBS mini project</small>
+    </span>
+  </div>
+  <nav class="nav" id="nav">
+    <a href="#top" class="nav-link is-active"><span>01</span>Overview</a>
+    <a href="#design" class="nav-link"><span>02</span>Database design</a>
+    <a href="#sql" class="nav-link"><span>03</span>SQL scripts</a>
+    <a href="#queries" class="nav-link"><span>04</span>Query gallery</a>
+    <a href="#app" class="nav-link"><span>05</span>Application code</a>
+    <a href="#demo" class="nav-link"><span>06</span>Live demo</a>
+    <a href="#screenshots" class="nav-link"><span>07</span>Screenshots</a>
+    <a href="#files" class="nav-link"><span>08</span>All files</a>
+  </nav>
+  <div class="sidebar-foot">
+    <a class="btn btn-gold btn-block" href="report.html">Project report</a>
+    <p class="tiny">Python 3 · PostgreSQL 16 · psycopg2</p>
+  </div>
+</aside>
+
+<button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+
+<main class="main">
+
+  <!-- ================= HERO ================= -->
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <p class="overline">Database Systems · Mini Project · B.E. CSE (2nd year)</p>
+      <h1>Hotel Management<br /><em>System</em></h1>
+      <p class="lede">
+        A complete, working front-desk application: a normalized PostgreSQL
+        database, 34 demonstration queries, an ER diagram, a full project
+        report — and the Python program that ties it all together.
+        Everything on this page is generated from the project files and a
+        live database.
+      </p>
+      <div class="chips">
+        <span class="chip">Python 3</span>
+        <span class="chip">PostgreSQL 16</span>
+        <span class="chip">psycopg2</span>
+        <span class="chip">4 tables · 5 views</span>
+        <span class="chip">6 modules</span>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="#demo">Try the live demo</a>
+        <a class="btn btn-ghost" href="report.html">Read the report</a>
+        <a class="btn btn-ghost" href="#files">Download files</a>
+      </div>
+      <div class="stats" id="stats">
+        <div class="stat"><b data-stat="customers">12</b><span>customers</span></div>
+        <div class="stat"><b data-stat="rooms">14</b><span>rooms</span></div>
+        <div class="stat"><b data-stat="reservations">16</b><span>reservations</span></div>
+        <div class="stat"><b data-stat="payments">16</b><span>payments</span></div>
+        <div class="stat"><b data-stat="queries">34</b><span>SQL queries</span></div>
+        <div class="stat"><b>₹ <span data-stat="revenue">1,01,100</span></b><span>revenue collected</span></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="page">
+
+    <!-- ================= OVERVIEW ================= -->
+    <section class="section" id="overview">
+      <div class="section-head">
+        <p class="overline">01 — Overview</p>
+        <h2>What the project does</h2>
+      </div>
+
+      <div class="grid-2">
+        <article class="card">
+          <h3>Abstract</h3>
+          <p>
+            Hotels lose money and time when bookings, guests, check-ins and
+            payments live in paper registers: the same room gets allotted
+            twice, bills are calculated by hand, and managers cannot say how
+            much revenue was collected this month.
+          </p>
+          <p>
+            This project replaces that register with a <strong>normalized
+            (3NF) PostgreSQL database</strong> — <code>customer</code>,
+            <code>room</code>, <code>reservation</code> and
+            <code>payment</code> — protected by primary keys, foreign keys,
+            <code>UNIQUE</code> and <code>CHECK</code> constraints. A
+            menu-driven <strong>Python application</strong> talks to it
+            through <strong>psycopg2</strong> using parameterized queries and
+            explicit transactions.
+          </p>
+          <p>
+            Room availability is calculated date-wise, the bill is computed
+            automatically as <em>nights × room price</em>, and check-in /
+            check-out update the reservation and the room in one atomic
+            transaction. Five views and 34 SQL queries produce all the
+            management reports.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Problem statement</h3>
+          <p class="quote">
+            “Design and implement a database-backed Hotel Management System
+            that stores customer, room, reservation and payment data in a
+            normalized relational database, prevents duplicate bookings,
+            calculates bills automatically, records check-in / check-out and
+            payments, and produces management reports instantly.”
+          </p>
+          <h4>Objectives</h4>
+          <ol class="tight">
+            <li>Design an ER model and a 3NF relational schema.</li>
+            <li>Implement it in PostgreSQL with full integrity constraints.</li>
+            <li>Build a simple menu-driven Python app using psycopg2.</li>
+            <li>Calculate the total amount as nights × tariff.</li>
+            <li>Prevent double booking with a date-overlap test.</li>
+            <li>Keep reservation and room status consistent (transactions).</li>
+            <li>Demonstrate every required SQL concept with real data.</li>
+            <li>Document design, queries, screenshots and a demo script.</li>
+          </ol>
+        </article>
+      </div>
+
+      <h3 class="mt">Six functional modules</h3>
+      <div class="module-grid" id="moduleGrid"></div>
+
+      <h3 class="mt">Existing system vs proposed system</h3>
+      <div class="table-wrap">
+        <table class="data">
+          <thead>
+            <tr><th>Area</th><th>Manual (existing) system</th><th>This system (proposed)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Guest records</td><td>Paper register, slow search</td><td><code>customer</code> table with unique e-mail, phone and ID number</td></tr>
+            <tr><td>Room allotment</td><td>Whiteboard / memory → double booking</td><td>Availability query on <code>reservation</code> for the chosen dates</td></tr>
+            <tr><td>Billing</td><td>Hand calculation, errors</td><td><code>total_amount = nights × price_per_night</code>, stored and reproducible</td></tr>
+            <tr><td>Payments</td><td>Separate cash book</td><td><code>payment</code> table with method and status (Pending / Paid / Refunded)</td></tr>
+            <tr><td>Reports</td><td>Manual counting, hours</td><td>SQL aggregates and views, instant</td></tr>
+            <tr><td>Data safety</td><td>None</td><td>PK, FK, <code>UNIQUE</code>, <code>NOT NULL</code>, <code>CHECK</code>, transactions</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid-3 mt">
+        <div class="card small">
+          <h4>Requirements</h4>
+          <ul class="tight">
+            <li>Python 3.10+ with <code>psycopg2-binary</code></li>
+            <li>PostgreSQL 14+ (tested on 16)</li>
+            <li><code>psql</code> or pgAdmin</li>
+            <li>No web framework, no ORM — standard library only</li>
+          </ul>
+        </div>
+        <div class="card small">
+          <h4>Run it locally</h4>
+          <pre class="mini-code">psql -U postgres -f sql/00_create_database.sql
+psql -U postgres -d hotel_db -f sql/01_schema.sql
+psql -U postgres -d hotel_db -f sql/02_sample_data.sql
+cp .env.example .env     # set your password
+cd app &amp;&amp; python main.py</pre>
+        </div>
+        <div class="card small">
+          <h4>Design decisions</h4>
+          <ul class="tight">
+            <li>Surrogate primary keys (<code>SERIAL</code>) on every table</li>
+            <li>Bill stored, not recomputed later — tariff history</li>
+            <li>One payment row per reservation (<code>UNIQUE</code>)</li>
+            <li>Cancelled bookings do not block a room</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DESIGN ================= -->
+    <section class="section" id="design">
+      <div class="section-head">
+        <p class="overline">02 — Database design</p>
+        <h2>ER diagram, schema and normalization</h2>
+        <p class="lead">
+          Four entities, three relationships. The picture below is drawn from
+          the same attribute list that <code>sql/01_schema.sql</code> creates,
+          so the diagram cannot drift away from the database.
+        </p>
+      </div>
+
+      <figure class="figure">
+        <a href="ER_DIAGRAM.png" target="_blank" rel="noopener">
+          <img src="ER_DIAGRAM.png" alt="ER diagram of the Hotel Management System" />
+        </a>
+        <figcaption>
+          Entity–relationship diagram · <code>PK</code> primary key,
+          <code>FK</code> foreign key, <code>UQ</code> unique.
+          Click the image to open it full size.
+        </figcaption>
+      </figure>
+
+      <div class="relationship-row">
+        <div class="rel"><b>CUSTOMER</b><span>1 ⟶ N</span><b>RESERVATION</b><small>a guest books many times</small></div>
+        <div class="rel"><b>ROOM</b><span>1 ⟶ N</span><b>RESERVATION</b><small>a room is booked on many dates</small></div>
+        <div class="rel"><b>RESERVATION</b><span>1 ⟶ 1</span><b>PAYMENT</b><small>one payment record per booking</small></div>
+      </div>
+
+      <h3 class="mt">Relational schema</h3>
+      <p class="muted">Bold = primary key · <span class="badge-fk">FK</span> = foreign key · <span class="badge-uq">UQ</span> = unique constraint</p>
+      <div class="schema-grid" id="schemaGrid"></div>
+
+      <div class="grid-2 mt">
+        <div class="card">
+          <h3>Integrity constraints implemented</h3>
+          <ul class="check-list">
+            <li><b>PRIMARY KEY</b> on all four tables (<code>SERIAL</code> surrogates).</li>
+            <li><b>FOREIGN KEY</b> <code>reservation.customer_id → customer</code>, <code>reservation.room_id → room</code>, <code>payment.reservation_id → reservation</code>.</li>
+            <li><b>ON DELETE</b> rules: <code>RESTRICT</code> for booked customers/rooms (history kept), <code>CASCADE</code> for payments of a deleted reservation.</li>
+            <li><b>UNIQUE</b> e-mail, phone, ID number, room number and one payment per reservation.</li>
+            <li><b>NOT NULL</b> on every required column.</li>
+            <li><b>CHECK</b>: <code>check_out_date &gt; check_in_date</code>, <code>price_per_night &gt; 0</code>, occupancy 1–6, valid room types, statuses and payment methods, 10-digit phone, booking date not after check-in.</li>
+            <li><b>Indexes</b> on both foreign keys, on dates and on status columns.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Normalization — up to 3NF</h3>
+          <div class="norm">
+            <div class="norm-item">
+              <span class="norm-tag">1NF</span>
+              <p>Every column holds a single atomic value — no repeating groups, no comma-separated lists.</p>
+            </div>
+            <div class="norm-item">
+              <span class="norm-tag">2NF</span>
+              <p>Each table has a single-column primary key, so no non-key attribute depends on only part of a key.</p>
+            </div>
+            <div class="norm-item">
+              <span class="norm-tag">3NF</span>
+              <p>No transitive dependencies: tariffs live only in <code>room</code>, guest data only in <code>customer</code>, payment status only in <code>payment</code>.</p>
+            </div>
+          </div>
+          <p class="muted small mt-s">
+            An un-normalized booking sheet repeats the guest's phone for every
+            booking and allows a room to exist only inside a booking. It is
+            decomposed into four tables joined by foreign keys — a loss-less
+            decomposition, because every table can be re-joined on its key.
+          </p>
+          <pre class="mini-code">BOOKING (customer_name, customer_phone, customer_email, room_no,
+         room_type, price, check_in, check_out, nights,
+         total_amount, payment_method, payment_status)
+
+   ↓ 3NF decomposition
+
+customer(customer_id, ...)      room(room_id, ...)
+reservation(reservation_id, customer_id→customer,
+            room_id→room, ...)  payment(payment_id, reservation_id→reservation, ...)</pre>
+        </div>
+      </div>
+
+      <div class="callout mt">
+        <h4>How double booking is prevented</h4>
+        <p>Two stays overlap when the existing check-in is before the wanted check-out <em>and</em> the existing check-out is after the wanted check-in. Only <code>Booked</code> and <code>CheckedIn</code> reservations block a room, so cancelling frees the dates automatically.</p>
+        <pre class="mini-code">NOT EXISTS (
+  SELECT 1 FROM reservation r
+  WHERE r.room_id = rm.room_id
+    AND r.status IN ('Booked', 'CheckedIn')
+    AND r.check_in_date  &lt; :wanted_check_out
+    AND r.check_out_date &gt; :wanted_check_in
+)</pre>
+      </div>
+    </section>
+
+    <!-- ================= SQL ================= -->
+    <section class="section" id="sql">
+      <div class="section-head">
+        <p class="overline">03 — SQL scripts</p>
+        <h2>Every script, exactly as executed</h2>
+        <p class="lead">
+          The four scripts below create the database, the schema, the sample
+          data and the 34 demonstration queries. They were run on PostgreSQL
+          16 without errors, and each is downloadable on the
+          <a href="#files">files</a> page.
+        </p>
+      </div>
+      <div class="viewer" id="sqlViewer"></div>
+    </section>
+
+    <!-- ================= QUERIES ================= -->
+    <section class="section" id="queries">
+      <div class="section-head">
+        <p class="overline">04 — Query gallery</p>
+        <h2>SQL concepts with their real output</h2>
+        <p class="lead">
+          Every result table below was produced by running the query against
+          the sample database when this page was generated — not typed by
+          hand. Together they cover WHERE, ORDER BY, the five aggregate
+          functions, GROUP BY, HAVING, INNER JOIN, LEFT JOIN, subqueries and
+          views.
+        </p>
+      </div>
+      <div class="filter-row">
+        <label for="queryFilter">Filter by concept</label>
+        <select id="queryFilter"><option value="">All concepts</option></select>
+        <span class="muted small" id="queryCount"></span>
+      </div>
+      <div id="queryList" class="query-list"></div>
+      <p class="muted small mt-s">
+        The complete set — 34 numbered queries including CREATE TABLE,
+        INSERT, UPDATE and DELETE — is in
+        <a href="downloads/sql/03_queries.sql">sql/03_queries.sql</a>.
+      </p>
+
+      <h3 class="mt">Concept coverage</h3>
+      <p class="muted">Every SQL concept required by the project brief, and where to find it.</p>
+      <div class="coverage" id="coverage"></div>
+    </section>
+
+    <!-- ================= APP ================= -->
+    <section class="section" id="app">
+      <div class="section-head">
+        <p class="overline">05 — Application</p>
+        <h2>The Python program</h2>
+        <p class="lead">
+          Nine small files, one job each. Everything that touches SQL goes
+          through <code>db.py</code>, so every statement is parameterized and
+          every multi-table change runs inside a transaction.
+        </p>
+      </div>
+
+      <div class="arch">
+        <div class="arch-box arch-main">main.py<small>menus · dispatch</small></div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-row">
+          <div class="arch-box">customers.py<small>module 1</small></div>
+          <div class="arch-box">rooms.py<small>module 2</small></div>
+          <div class="arch-box">reservations.py<small>module 3</small></div>
+          <div class="arch-box">frontdesk.py<small>module 4</small></div>
+          <div class="arch-box">payments.py<small>module 5</small></div>
+          <div class="arch-box">reports.py<small>module 6</small></div>
+        </div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-row">
+          <div class="arch-box arch-core">db.py<small>parameterized SQL · transactions · errors</small></div>
+          <div class="arch-box arch-core">config.py<small>.env settings</small></div>
+          <div class="arch-box arch-core">ui.py<small>tables · validation</small></div>
+        </div>
+        <div class="arch-arrow">↓ psycopg2</div>
+        <div class="arch-box arch-db">PostgreSQL · hotel_db<small>customer · room · reservation · payment</small></div>
+      </div>
+
+      <div class="grid-3 mt">
+        <div class="card small">
+          <h4>Parameterized queries</h4>
+          <pre class="mini-code">db.query(
+  "SELECT * FROM customer "
+  "WHERE LOWER(full_name) LIKE LOWER(%s)",
+  (f"%{keyword}%",))</pre>
+          <p class="muted small">User input never becomes SQL text → no SQL injection.</p>
+        </div>
+        <div class="card small">
+          <h4>Atomic transactions</h4>
+          <pre class="mini-code">db.run_in_transaction([
+  ("UPDATE reservation SET status="
+   "'CheckedIn' WHERE reservation_id=%s", (id_,)),
+  ("UPDATE room SET status='Occupied' "
+   "WHERE room_id=%s", (room_id,)),
+])</pre>
+          <p class="muted small">Check-in changes two tables — or neither.</p>
+        </div>
+        <div class="card small">
+          <h4>Readable errors</h4>
+          <pre class="mini-code">[ERROR] Could not add the customer.
+  A record with the same value already
+  exists (UNIQUE constraint).
+  Database says: duplicate key value
+  violates unique constraint ...</pre>
+          <p class="muted small">SQLSTATE codes are translated into plain English.</p>
+        </div>
+      </div>
+
+      <h3 class="mt">Source code</h3>
+      <div class="viewer" id="appViewer"></div>
+    </section>
+
+    <!-- ================= DEMO ================= -->
+    <section class="section" id="demo">
+      <div class="section-head">
+        <p class="overline">06 — Live demo</p>
+        <h2>The application, in your browser</h2>
+        <p class="lead">
+          A browser simulation of the Python program, working on a snapshot of
+          the same sample data and applying the same rules: unique e-mail and
+          phone, date-overlap availability, automatic bill, one payment per
+          reservation and atomic check-in / check-out. Every action shows the
+          equivalent parameterized SQL. Changes are saved in this browser only
+          — the real project writes them to PostgreSQL.
+        </p>
+      </div>
+
+      <div class="demo">
+        <div class="demo-main">
+          <div class="demo-toolbar">
+            <div class="demo-tabs" id="demoTabs">
+              <button class="tab is-active" data-demo="customers">Customers</button>
+              <button class="tab" data-demo="rooms">Rooms</button>
+              <button class="tab" data-demo="reservations">Reservations</button>
+              <button class="tab" data-demo="frontdesk">Check-in / out</button>
+              <button class="tab" data-demo="payments">Payments</button>
+              <button class="tab" data-demo="reports">Reports</button>
+            </div>
+            <button class="btn btn-ghost btn-sm" id="resetDemo" title="Restore the original sample data">Reset data</button>
+          </div>
+          <div class="demo-panel" id="demoPanel"></div>
+        </div>
+        <aside class="sql-log">
+          <div class="sql-log-head">
+            <strong>SQL log</strong>
+            <span class="muted small">equivalent statements</span>
+          </div>
+          <div class="sql-log-body" id="sqlLog">
+            <p class="log-empty">Run an action to see the SQL the real program
+              would execute.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ================= SCREENSHOTS ================= -->
+    <section class="section" id="screenshots">
+      <div class="section-head">
+        <p class="overline">07 — Screenshots</p>
+        <h2>Real runs of the console program</h2>
+        <p class="lead">
+          Each screenshot was captured by running <code>python main.py</code>
+          against the sample database with a scripted sequence of inputs —
+          they show genuine output, not mock-ups.
+        </p>
+      </div>
+      <div class="gallery" id="gallery"></div>
+    </section>
+
+    <!-- ================= FILES ================= -->
+    <section class="section" id="files">
+      <div class="section-head">
+        <p class="overline">08 — All files</p>
+        <h2>Everything in one place</h2>
+        <p class="lead">
+          The complete project — SQL scripts, Python sources, report and
+          sample output — bundled together on this page.
+        </p>
+      </div>
+
+      <div class="download-cards">
+        <a class="download-card" href="downloads/docs/PROJECT_REPORT.docx">
+          <span class="dl-icon">DOC</span>
+          <strong>Project report</strong>
+          <small>Word document, print-ready · 16 sections, 22 images</small>
+        </a>
+        <a class="download-card" href="downloads/sql/01_schema.sql">
+          <span class="dl-icon">SQL</span>
+          <strong>Database scripts</strong>
+          <small>Create, schema, sample data, 34 queries</small>
+        </a>
+        <a class="download-card" href="downloads/app/main.py">
+          <span class="dl-icon">PY</span>
+          <strong>Python application</strong>
+          <small>10 files · menu-driven, psycopg2</small>
+        </a>
+        <a class="download-card" href="downloads/docs/SAMPLE_RUN_OUTPUT.txt">
+          <span class="dl-icon">TXT</span>
+          <strong>Sample run</strong>
+          <small>Transcript of a complete demo session</small>
+        </a>
+      </div>
+
+      <div id="fileGroups" class="file-groups"></div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <div>
+      <strong>Hotel Management System</strong>
+      <p class="tiny">Database Systems mini project · Python 3 · PostgreSQL · psycopg2</p>
+    </div>
+    <p class="tiny">
+      Page generated from the project files on <span id="generatedAt">—</span>.
+      <br />Sample data is fictional.
+    </p>
+  </footer>
+</main>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close">×</button>
+  <figure>
+    <img id="lightboxImg" alt="" />
+    <figcaption id="lightboxCaption"></figcaption>
+  </figure>
+</div>
+
+<script src="assets/data/project.js"></script>
+<script src="assets/js/demo.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

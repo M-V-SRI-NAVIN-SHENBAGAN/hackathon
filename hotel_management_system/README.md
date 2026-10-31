@@ -8,9 +8,10 @@ check-in/check-out, payments and reports.
 
 ```
 hotel_management_system/
-├── sql/      database creation, schema, sample data, demonstration queries
-├── app/      the Python application (one file per module)
-└── docs/     project report, ER diagram, screenshots, helper scripts
+├── sql/       database creation, schema, sample data, demonstration queries
+├── app/       the Python application (one file per module)
+├── docs/      project report, ER diagram, screenshots, helper scripts
+└── website/   one-page project website with a browser demo of the app
 ```
 
 ---
@@ -28,6 +29,7 @@ hotel_management_system/
 | Project report (Markdown + Word) | `docs/PROJECT_REPORT.md`, `docs/PROJECT_REPORT.docx` |
 | Screenshots of every module | `docs/screenshots/` (21 images) |
 | Demonstration script for the viva | `docs/PROJECT_REPORT.md`, Appendix B |
+| Website that combines everything above | `website/index.html` |
 
 ---
 
@@ -41,7 +43,31 @@ Nothing else — no Django/Flask/Tkinter, no external libraries.
 
 ---
 
-## 3. Setup (5 commands)
+## 3. Project website
+
+`website/` is a static site that puts the whole project on one page:
+the ER diagram, schema, SQL scripts, live query results, all Python
+sources, 21 screenshots, the full report, downloads of every file — and a
+**live in-browser demo** of the application that shows the equivalent
+parameterized SQL for each action.
+
+```bash
+# (re)build it from the project files + the loaded database
+python docs/tools/build_website.py     # needs psycopg2 + markdown
+
+# serve it
+python -m http.server 8080 --directory website
+# then open http://localhost:8080
+```
+
+The site is generated, not hand-written: rebuild it after changing the
+schema, the queries or the Python code and it stays in sync. The demo runs
+on a snapshot of the sample data and stores its changes in the browser
+only — the real application is the one that writes to PostgreSQL.
+
+---
+
+## 4. Setup (5 commands)
 
 ```bash
 # 1. create the database (creates hotel_db)
@@ -87,7 +113,7 @@ No password is hard-coded in the Python sources.
 
 ---
 
-## 4. Main menu
+## 5. Main menu
 
 ```
   1. Customer Management      add / view / search / update / delete customers
@@ -106,7 +132,7 @@ operation and return safely to the menu.
 
 ---
 
-## 5. Database at a glance
+## 6. Database at a glance
 
 | Table | Primary key | Foreign keys | Highlights |
 |---|---|---|---|
@@ -143,7 +169,7 @@ is stored so that old bills do not change when a tariff changes later.
 
 ---
 
-## 6. Application structure
+## 7. Application structure
 
 | File | Purpose |
 |---|---|
@@ -160,7 +186,7 @@ is stored so that old bills do not change when a tariff changes later.
 
 ---
 
-## 7. Regenerating the documentation (optional)
+## 8. Regenerating the documentation (optional)
 
 Only needed if you change the schema or the program output. Requires
 `matplotlib`, `pillow` and `python-docx`.
@@ -174,9 +200,13 @@ python docs/tools/make_report_docx.py    # docs/PROJECT_REPORT.docx
 `make_screenshots.py` **reloads the sample data** before every screenshot, so
 run it on a demo copy of the database if you have entered your own data.
 
+```bash
+python docs/tools/build_website.py       # website/index.html + assets/data/project.js
+```
+
 ---
 
-## 8. Troubleshooting
+## 9. Troubleshooting
 
 | Message | Fix |
 |---|---|
@@ -188,7 +218,7 @@ run it on a demo copy of the database if you have entered your own data.
 
 ---
 
-## 9. Documentation
+## 10. Documentation
 
 * `docs/PROJECT_REPORT.md` / `docs/PROJECT_REPORT.docx` — full report:
   abstract, problem statement, objectives, existing vs proposed system,
@@ -197,3 +227,5 @@ run it on a demo copy of the database if you have entered your own data.
   implementation notes, screenshots, results, conclusion, setup steps and
   the demonstration sequence.
 * `docs/SAMPLE_RUN_OUTPUT.txt` — plain-text transcript of one demo session.
+* `website/index.html` — the same material as an interactive website, with a
+  browser demo of the application and downloads of every file.
