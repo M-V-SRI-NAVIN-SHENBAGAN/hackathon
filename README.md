@@ -4,6 +4,12 @@
 > The project website (schema, SQL, code, screenshots, live demo) is in
 > [`hotel_management_system/website/`](hotel_management_system/website/index.html)
 > — serve it with `python -m http.server 8080 --directory hotel_management_system/website`.
+>
+> **Deploying the website (Vercel):** import this repository at
+> <https://vercel.com/new> and set **Root Directory** to
+> `hotel_management_system/website`, leave the build command empty — the
+> folder is plain static HTML/CSS/JS with its own `vercel.json`. Full steps:
+> [`hotel_management_system/website/README.md`](hotel_management_system/website/README.md).
 
 # MediVault — Your health history. Always with you.
 
