@@ -1,0 +1,2 @@
+# Runtime requirement of the application (Python 3.10+)
+psycopg2-binary>=2.9.9
