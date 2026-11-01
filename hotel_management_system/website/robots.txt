@@ -1,0 +1,3 @@
+# Hotel Management System — Database Systems mini project
+User-agent: *
+Allow: /
