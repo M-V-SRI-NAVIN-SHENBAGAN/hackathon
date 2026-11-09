@@ -53,17 +53,16 @@
       <p class="overline">DBMS project</p>
       <h1>Hotel Management<br /><em>System</em></h1>
       <div class="hero-actions">
-        <a class="btn btn-gold" href="#demo">Try the live demo</a>
+        <a class="btn btn-gold" href="#app">Try the Application</a>
         <a class="btn btn-ghost" href="report.html">Read the report</a>
         <a class="btn btn-ghost" href="#files">Download files</a>
       </div>
-      <div class="stats" id="stats">
-        <div class="stat"><b data-stat="customers">12</b><span>customers</span></div>
-        <div class="stat"><b data-stat="rooms">14</b><span>rooms</span></div>
-        <div class="stat"><b data-stat="reservations">16</b><span>reservations</span></div>
-        <div class="stat"><b data-stat="payments">16</b><span>payments</span></div>
-        <div class="stat"><b data-stat="queries">34</b><span>SQL queries</span></div>
-        <div class="stat"><b>₹ <span data-stat="revenue">1,01,100</span></b><span>revenue collected</span></div>
+      <div class="app-info" id="appInfo">
+        <p><strong>The Application</strong> — a menu-driven Python program connecting to PostgreSQL that performs all hotel management operations.</p>
+        <p><strong>What it does:</strong> Customer, Room, Reservation, Check-in/out, Payment, and Reports management.</p>
+        <p><strong>Six modules:</strong> customers, rooms, reservations, frontdesk, payments, reports.</p>
+        <p><strong>Booking / availability / billing logic:</strong> Date-wise availability checks, automatic bill computation (nights × price), atomic check-in/out transactions.</p>
+        <p><strong>Visitor actions:</strong> Search, book, check-in/out, record payments, run reports.</p>
       </div>
     </div>
   </header>
@@ -319,13 +318,18 @@ reservation(reservation_id, customer_id→customer,
     <!-- ================= APP ================= -->
     <section class="section" id="app">
       <div class="section-head">
-        <p class="overline">05 — Application</p>
-        <h2>The Python program</h2>
+        <p class="overline">02 — Application</p>
+        <h2>The Application</h2>
         <p class="lead">
-          Nine small files, one job each. Everything that touches SQL goes
-          through <code>db.py</code>, so every statement is parameterized and
-          every multi-table change runs inside a transaction.
+          The application is a menu-driven Python program that connects to PostgreSQL and performs all hotel management operations. It consists of six functional modules and handles booking, availability, billing logic, and visitor actions.
         </p>
+      </div>
+
+      <div class="app-info" id="appInfo">
+        <p><strong>What it does:</strong> Customer, Room, Reservation, Check-in/out, Payment, and Reports management.</p>
+        <p><strong>Six modules:</strong> customers, rooms, reservations, frontdesk, payments, reports.</p>
+        <p><strong>Booking / availability / billing logic:</strong> Date-wise availability checks, automatic bill computation (nights × price), atomic check-in/out transactions.</p>
+        <p><strong>Visitor actions:</strong> Search, book, check-in/out, record payments, run reports.</p>
       </div>
 
       <div class="arch">
@@ -378,9 +382,6 @@ reservation(reservation_id, customer_id→customer,
           <p class="muted small">SQLSTATE codes are translated into plain English.</p>
         </div>
       </div>
-
-      <h3 class="mt">Source code</h3>
-      <div class="viewer" id="appViewer"></div>
     </section>
 
     <!-- ================= DEMO ================= -->
