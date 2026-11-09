@@ -11,11 +11,11 @@
 <meta property="og:site_name" content="Hotel Management System" />
 <meta property="og:title" content="Hotel Management System · Database Systems Mini Project" />
 <meta property="og:description" content="PostgreSQL schema, 34 SQL queries, ER diagram and a working Python/psycopg2 application — plus a live in-browser demo of the hotel front desk." />
-<meta property="og:image" content="ER_DIAGRAM.png" />
+<meta property="og:image" content="Hotel_management_DBMS.png" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Hotel Management System · Database Systems Mini Project" />
 <meta name="twitter:description" content="PostgreSQL schema, 34 SQL queries, ER diagram, full report and a live browser demo of the front-desk application." />
-<meta name="twitter:image" content="ER_DIAGRAM.png" />
+<meta name="twitter:image" content="Hotel_management_DBMS.png" />
 <link rel="stylesheet" href="assets/css/site.css" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230c1c2c'/><text y='72' x='50' font-size='58' text-anchor='middle' fill='%23d8b45a' font-family='Georgia'>H</text></svg>" />
 </head>
@@ -32,16 +32,13 @@
   </div>
   <nav class="nav" id="nav">
     <a href="#top" class="nav-link is-active"><span>01</span>Overview</a>
-    <a href="#design" class="nav-link"><span>02</span>Database design</a>
-    <a href="#sql" class="nav-link"><span>03</span>SQL scripts</a>
+    <a href="#app" class="nav-link"><span>02</span><strong>Application</strong></a>
+    <a href="#design" class="nav-link"><span>03</span>Database design</a>
     <a href="#queries" class="nav-link"><span>04</span>Query gallery</a>
-    <a href="#app" class="nav-link"><span>05</span>Application code</a>
-    <a href="#demo" class="nav-link"><span>06</span>Live demo</a>
-    <a href="#screenshots" class="nav-link"><span>07</span>Screenshots</a>
-    <a href="#files" class="nav-link"><span>08</span>All files</a>
+    <a href="#screenshots" class="nav-link"><span>05</span>Screenshots</a>
+    <a href="#files" class="nav-link"><span>06</span>All files</a>
   </nav>
   <div class="sidebar-foot">
-    <a class="btn btn-gold btn-block" href="report.html">Project report</a>
     <p class="tiny">Python 3 · PostgreSQL 16 · psycopg2</p>
   </div>
 </aside>
@@ -53,22 +50,8 @@
   <!-- ================= HERO ================= -->
   <header class="hero" id="top">
     <div class="hero-inner">
-      <p class="overline">Database Systems · Mini Project · B.E. CSE (2nd year)</p>
+      <p class="overline">DBMS project</p>
       <h1>Hotel Management<br /><em>System</em></h1>
-      <p class="lede">
-        A complete, working front-desk application: a normalized PostgreSQL
-        database, 34 demonstration queries, an ER diagram, a full project
-        report — and the Python program that ties it all together.
-        Everything on this page is generated from the project files and a
-        live database.
-      </p>
-      <div class="chips">
-        <span class="chip">Python 3</span>
-        <span class="chip">PostgreSQL 16</span>
-        <span class="chip">psycopg2</span>
-        <span class="chip">4 tables · 5 views</span>
-        <span class="chip">6 modules</span>
-      </div>
       <div class="hero-actions">
         <a class="btn btn-gold" href="#demo">Try the live demo</a>
         <a class="btn btn-ghost" href="report.html">Read the report</a>
@@ -208,8 +191,8 @@ cd app &amp;&amp; python main.py</pre>
       </div>
 
       <figure class="figure">
-        <a href="ER_DIAGRAM.png" target="_blank" rel="noopener">
-          <img src="ER_DIAGRAM.png" alt="ER diagram of the Hotel Management System" />
+        <a href="Hotel_management_DBMS.png" target="_blank" rel="noopener">
+          <img src="Hotel_management_DBMS.png" alt="ER diagram of the Hotel Management System" />
         </a>
         <figcaption>
           Entity–relationship diagram · <code>PK</code> primary key,
