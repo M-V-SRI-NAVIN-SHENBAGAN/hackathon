@@ -52,7 +52,7 @@
       pattern = new RegExp(
         "(#[^\\n]*)" +
         "|(\"\"\"[\\s\\S]*?\"\"\"|'''[\\s\\S]*?'''" +
-        "|\"(?:\\\\.|[^\"\\\\])*\"|'(?:\\\\.|[^'\\\\\\\\])*')" +
+        "|\"(?:\\\\.|[^\"\\\\\\\\])*\"|'(?:\\\\.|[^'\\\\\\\\\\\\])*')" +
         "|(\\b(?:" + PY_WORDS.join("|") + ")\\b)" +
         "|(\\b\\d+(?:\\.\\d+)?\\b)", "g");
     }
@@ -353,9 +353,34 @@
   }
 
   /* ------------------------------------------------------------------
+     Navigation order helper (matches page order in report.html)
+     ------------------------------------------------------------------ */
+  function setupNavigationOrder() {
+    var nav = el("nav");
+    if (!nav) return;
+    // Expected order: Overview → Application → Database design → Query gallery → Screenshots → All files
+    var expectedOrder = [
+      "#1-overview",
+      "#12-application",
+      "#7-database-design",
+      "#11-query-gallery",
+      "#13-screenshots",
+      "#all-files"
+    ];
+    var links = Array.prototype.slice.call(nav.querySelectorAll("a"));
+    // Sort links to match expected order if they are out of order
+    links.sort(function (a, b) {
+      return expectedOrder.indexOf(a.getAttribute("href")) - expectedOrder.indexOf(b.getAttribute("href"));
+    });
+    // Re-attach in sorted order
+    links.forEach(function (link) { nav.appendChild(link); });
+  }
+
+  /* ------------------------------------------------------------------
      Navigation
      ------------------------------------------------------------------ */
   function setupNavigation() {
+    setupNavigationOrder(); // Ensure order matches page order
     var links = Array.prototype.slice.call(document.querySelectorAll(".nav-link"));
     var sections = links.map(function (link) {
       return document.querySelector(link.getAttribute("href"));
