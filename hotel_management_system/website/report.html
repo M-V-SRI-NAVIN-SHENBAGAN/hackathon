@@ -1,1489 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Project Report · Hotel Management System</title>
-<link rel="stylesheet" href="assets/css/site.css" />
-<style>
-  @media print {
-    .report-top { display: none; }
-    .report-body { padding: 0; max-width: none; }
-    .report-body h2 { page-break-after: avoid; }
-    .report-body pre, .report-body table, .report-body img { page-break-inside: avoid; }
-    a { color: inherit; text-decoration: none; }
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hotel Management System — Project Report</title>
+  <style>
+    :root { --primary: #0d6efd; --bg: #f8f9fa; --text: #212529; }
+    body { font-family: system-ui, -apple-system, sans-serif; margin: 0; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .container { max-width: 960px; margin: 0 auto; padding: 2rem; }
+    header { text-align: center; margin-bottom: 3rem; }
+    .overline { font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.1em; color: #6c757d; margin-bottom: 0.5rem; display: block; }
+    h1 { font-size: 2.5rem; margin: 0 0 1rem 0; }
+    nav { display: flex; gap: 1rem; background: #fff; padding: 1rem; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 3rem; flex-wrap: wrap; justify-content: center; }
+    nav a { color: var(--primary); text-decoration: none; font-weight: 500; padding: 0.5rem 1rem; border-radius: 0.25rem; transition: background 0.2s; }
+    nav a:hover, nav a.active { background: #e7f1ff; }
+    section { margin-bottom: 3rem; }
+    h2 { border-bottom: 2px solid var(--bg); padding-bottom: 0.5rem; margin-top: 2.5rem; }
+    h3 { margin-top: 2rem; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; background: #fff; border-radius: 0.5rem; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    table.fixed { table-layout: fixed; }
+    table.fixed th, table.fixed td { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    table.fixed th:hover, table.fixed td:hover { white-space: normal; overflow: visible; position: relative; }
+    table.fixed th:hover::after, table.fixed td:hover::after { content: attr(data-full); position: absolute; background: #fff; border: 1px solid #ccc; padding: 0.5rem; z-index: 10; left: 0; top: 100%; width: max-content; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+    th, td { padding: 0.75rem 1rem; border-bottom: 1px solid #dee2e6; text-align: left; }
+    th { background: #e9ecef; font-weight: 600; }
+    .scroll-container { overflow-x: auto; }
+    pre { background: #212529; color: #f8f9fa; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; font-family: monospace; }
+    code { background: #e9ecef; color: #d63384; padding: 0.2rem 0.4rem; border-radius: 0.25rem; font-family: monospace; }
+    img { max-width: 100%; height: auto; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin: 1rem 0; }
+    .info-panel { background: #fff; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); margin-bottom: 2rem; }
+    .info-panel h3 { margin-top: 0; }
+    .info-panel ul { margin: 0; padding-left: 1.5rem; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+    .card { background: #fff; padding: 1.5rem; border-radius: 0.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .card h4 { margin-top: 0; color: var(--primary); }
+    footer { text-align: center; margin-top: 4rem; padding: 2rem 0; border-top: 1px solid #dee2e6; color: #6c757d; font-size: 0.875rem; }
+  </style>
 </head>
-<body class="report-page">
-  <div class="report-top">
-    <div class="inner">
-      <a href="index.html">← Back to the project site</a>
-      <div class="actions">
-        <button class="btn btn-gold btn-sm" onclick="window.print()">Print / save as PDF</button>
-        <a class="btn btn-ghost btn-sm" href="downloads/docs/PROJECT_REPORT.docx">Word version</a>
+<body>
+  <div class="container">
+    <header>
+      <span class="overline">DBMS project</span>
+      <h1>Hotel Management System</h1>
+      <p>Project report generated from the project files and database</p>
+    </header>
+
+    <nav>
+      <a href="#1-overview" class="active">Overview</a>
+      <a href="#12-application">Application</a>
+      <a href="#7-database-design">Database design</a>
+      <a href="#11-query-gallery">Query gallery</a>
+      <a href="#13-screenshots">Screenshots</a>
+      <a href="#all-files">All files</a>
+    </nav>
+
+    <section id="1-overview">
+      <h2>1. Overview</h2>
+      <p>Abstract, objectives, modules, existing vs proposed system, setup</p>
+      <p>The website is <strong>generated from the project files and the database</strong>, never edited by hand, so it cannot disagree with the code:</p>
+      <pre><code class="language-bash"># 1. make sure the database is loaded (sql/01_schema.sql + sql/02_sample_data.sql)
+# 2. build the site  (needs psycopg2 + markdown)
+python docs/tools/build_website.py
+
+# 3. serve it locally and open http://localhost:8080
+python -m http.server 8080 --directory website</code></pre>
+    </section>
+
+    <section id="12-application">
+      <h2>12. Application</h2>
+      <div class="info-panel">
+        <h3>What it does</h3>
+        <p>The application is a menu-driven Python program that connects to PostgreSQL and performs all hotel management operations. It consists of six functional modules and handles booking, availability, billing logic, and visitor actions.</p>
+        <ul>
+          <li><strong>Customer management</strong> — add, list, search, update and delete guests.</li>
+          <li><strong>Room management</strong> — add rooms, list all rooms, show tariff/occupancy, update status.</li>
+          <li><strong>Reservation management</strong> — book a room, check availability, view and cancel reservations.</li>
+          <li><strong>Check-in / check-out</strong> — record guest arrival and departure in one transaction.</li>
+          <li><strong>Payment management</strong> — record Cash / Card / UPI payments and refunds.</li>
+          <li><strong>Reports and search</strong> — eight reports built with joins, aggregates, views and subqueries.</li>
+        </ul>
       </div>
-    </div>
-  </div>
-  <article class="report-body">
-<p class="overline">DBMS project</p>
-      <h1>HOTEL MANAGEMENT SYSTEM</h1>
-      <h3 id="a-database-systems-dbs-mini-project">A Database Systems (DBS) Mini Project</h3>
-      <p><strong>Technology stack:</strong> Python 3 · PostgreSQL · psycopg2</p>
-<h2 id="table-of-contents">Table of contents</h2>
-<ol>
-<li><a href="#1-abstract">Abstract</a></li>
-<li><a href="#2-problem-statement">Problem statement</a></li>
-<li><a href="#3-objectives">Objectives</a></li>
-<li><a href="#4-existing-system-and-proposed-system">Existing system and proposed system</a></li>
-<li><a href="#5-hardware-and-software-requirements">Hardware and software requirements</a></li>
-<li><a href="#6-description-of-functional-modules">Description of functional modules</a></li>
-<li><a href="#7-database-design">Database design</a></li>
-<li><a href="#8-er-diagram">ER diagram</a></li>
-<li><a href="#9-relational-schema">Relational schema</a></li>
-<li><a href="#10-normalization">Normalization</a></li>
-<li><a href="#11-sql-commands-and-queries">SQL commands and queries</a></li>
-<li><a href="#12-application-implementation">Application implementation</a></li>
-<li><a href="#13-screenshots-and-sample-outputs">Screenshots and sample outputs</a></li>
-<li><a href="#14-results-and-observations">Results and observations</a></li>
-<li><a href="#15-conclusion">Conclusion</a></li>
-<li><a href="#appendix-a--how-to-create-the-database-and-run-the-project">Appendix A — How to create the database and run the project</a></li>
-<li><a href="#appendix-b--demonstration-sequence">Appendix B — Demonstration sequence</a></li>
-<li><a href="#appendix-c--project-file-structure">Appendix C — Project file structure</a></li>
-</ol>
-<hr />
-<h2 id="1-abstract">1. Abstract</h2>
-<p>Hotels still lose money and time because room bookings, guest records,
-check-ins, check-outs and payments are maintained in separate paper
-registers and spreadsheets. The same room gets allotted twice, the bill of
-a guest is calculated by hand, and management has no quick answer to
-questions such as <em>"How much revenue did we collect this month?"</em> or
-<em>"Which room type is booked the most?"</em></p>
-<p>This mini project, <strong>Hotel Management System</strong>, solves these problems with
-a small, complete, database-driven desktop application. All data is stored
-in a <strong>PostgreSQL</strong> relational database consisting of four normalized
-tables — <code>customer</code>, <code>room</code>, <code>reservation</code> and <code>payment</code> — protected by
-primary keys, foreign keys, <code>NOT NULL</code>, <code>UNIQUE</code>, <code>CHECK</code> constraints and
-referential-integrity rules. The front desk staff use a <strong>menu-driven
-Python application</strong> that talks to PostgreSQL through <code>psycopg2</code> and
-performs real <code>INSERT</code>, <code>SELECT</code>, <code>UPDATE</code> and <code>DELETE</code> operations using
-parameterized queries.</p>
-<p>The system covers six functional modules: customer management, room
-management, reservation management, check-in/check-out, payment management
-and reports. Room availability is calculated date-wise from the reservation
-table, the booking amount is computed automatically as <em>number of nights ×
-room price</em>, and check-in/check-out update the reservation <strong>and</strong> the room
-in one atomic transaction. Five SQL views and thirty-four demonstration
-queries (joins, subqueries, aggregates, <code>GROUP BY</code>, <code>HAVING</code>, <code>ORDER BY</code>)
-provide the reports needed by the management.</p>
-<p>The result is a working, easy-to-understand mini project in which the ER
-diagram, the relational schema, the SQL scripts and the Python code all
-describe exactly the same database.</p>
-<p><strong>Keywords:</strong> hotel management, relational database, PostgreSQL, psycopg2,
-normalization, ER model, constraints, transactions.</p>
-<hr />
-<h2 id="2-problem-statement">2. Problem statement</h2>
-<p>A small hotel (about 10–30 rooms) records everything manually:</p>
-<ul>
-<li>Guest details are written in a register. Searching an old guest means
-  turning pages for several minutes.</li>
-<li>Room allotment is decided by looking at a whiteboard, so the same room is
-  sometimes given to two guests for overlapping dates.</li>
-<li>The bill is calculated by hand, so arithmetic mistakes happen and the
-  amount is sometimes not recorded against the guest at all.</li>
-<li>Payment details (cash / card / UPI) are kept in a separate cash book, so
-  the reception cannot say whether a guest has paid.</li>
-<li>At the end of the month the manager has to add up pages of the register
-  to find the revenue or the most popular room type.</li>
-</ul>
-<p><strong>Problem statement:</strong> <em>Design and implement a database-backed Hotel
-Management System that stores customer, room, reservation and payment data
-in a normalized relational database, prevents duplicate bookings,
-calculates bills automatically, records check-in/check-out and payments,
-and produces the management reports instantly — while remaining simple
-enough to be understood and demonstrated by a second-year CSE student.</em></p>
-<hr />
-<h2 id="3-objectives">3. Objectives</h2>
-<ol>
-<li>Design an ER model and a normalized (up to 3NF) relational schema for a
-   hotel front-desk system.</li>
-<li>Implement the schema in PostgreSQL with all necessary integrity
-   constraints (<code>PRIMARY KEY</code>, <code>FOREIGN KEY</code>, <code>NOT NULL</code>, <code>UNIQUE</code>,
-   <code>CHECK</code>, <code>ON DELETE</code> rules).</li>
-<li>Build a beginner-friendly, menu-driven Python application using
-   <code>psycopg2</code> that performs real database operations for every module.</li>
-<li>Automate the calculation of the total booking amount
-   (<code>nights × price per night</code>).</li>
-<li>Prevent double booking by checking date-wise room availability before a
-   reservation is stored.</li>
-<li>Record check-in, check-out and payments, keeping the reservation status
-   and room status consistent in a single transaction.</li>
-<li>Demonstrate the SQL concepts required by the syllabus — <code>CREATE TABLE</code>,
-   <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>, <code>SELECT … WHERE</code>, <code>ORDER BY</code>, aggregate
-   functions, <code>GROUP BY</code>, <code>HAVING</code>, <code>INNER JOIN</code>, <code>LEFT JOIN</code>, subqueries
-   and views — with realistic sample data and their actual output.</li>
-<li>Produce complete documentation: ER diagram, relational schema,
-   normalization notes, screenshots and a demonstration script.</li>
-</ol>
-<hr />
-<h2 id="4-existing-system-and-proposed-system">4. Existing system and proposed system</h2>
-<h3 id="41-existing-manual-system">4.1 Existing (manual) system</h3>
-<table>
-<thead>
-<tr>
-<th>Area</th>
-<th>How it works today</th>
-<th>Problem</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Guest records</td>
-<td>Paper register</td>
-<td>Slow search, torn pages, no backup</td>
-</tr>
-<tr>
-<td>Room allotment</td>
-<td>Whiteboard / memory</td>
-<td>Double booking, no date-wise check</td>
-</tr>
-<tr>
-<td>Billing</td>
-<td>Manual calculation</td>
-<td>Arithmetic errors, no history</td>
-</tr>
-<tr>
-<td>Payments</td>
-<td>Separate cash book</td>
-<td>Payment status of a guest unknown</td>
-</tr>
-<tr>
-<td>Reports</td>
-<td>Manual counting</td>
-<td>Takes hours, often inaccurate</td>
-</tr>
-<tr>
-<td>Security</td>
-<td>Anyone can read the register</td>
-<td>No controlled access</td>
-</tr>
-</tbody>
-</table>
-<h3 id="42-proposed-computerised-system">4.2 Proposed (computerised) system</h3>
-<table>
-<thead>
-<tr>
-<th>Area</th>
-<th>How the new system works</th>
-<th>Benefit</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Guest records</td>
-<td><code>customer</code> table with <code>UNIQUE</code> email, phone and ID number</td>
-<td>Instant search, no duplicates</td>
-</tr>
-<tr>
-<td>Room allotment</td>
-<td>Availability query on <code>reservation</code> for the chosen dates</td>
-<td>No double booking</td>
-</tr>
-<tr>
-<td>Billing</td>
-<td><code>total_amount</code> computed by the application and stored</td>
-<td>Accurate, reproducible bills</td>
-</tr>
-<tr>
-<td>Payments</td>
-<td><code>payment</code> table with method and status</td>
-<td>Payment status always visible</td>
-</tr>
-<tr>
-<td>Reports</td>
-<td>SQL aggregates and views</td>
-<td>Instant, accurate reports</td>
-</tr>
-<tr>
-<td>Integrity</td>
-<td>Primary keys, foreign keys, <code>CHECK</code> constraints</td>
-<td>Invalid data rejected by the database itself</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Advantages of the proposed system</strong></p>
-<ul>
-<li>Single source of truth — one PostgreSQL database for all modules.</li>
-<li>Data integrity enforced by the DBMS, not only by the program.</li>
-<li>Availability and revenue reports are produced in milliseconds.</li>
-<li>The application uses parameterized queries, so SQL injection is avoided.</li>
-<li>Check-in / check-out are atomic: the reservation and the room can never
-  disagree.</li>
-</ul>
-<hr />
-<h2 id="5-hardware-and-software-requirements">5. Hardware and software requirements</h2>
-<h3 id="51-hardware-requirements">5.1 Hardware requirements</h3>
-<table>
-<thead>
-<tr>
-<th>Component</th>
-<th>Minimum</th>
-<th>Recommended</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Processor</td>
-<td>Intel Core i3 (2 GHz)</td>
-<td>Intel Core i5 or better</td>
-</tr>
-<tr>
-<td>RAM</td>
-<td>4 GB</td>
-<td>8 GB</td>
-</tr>
-<tr>
-<td>Free disk space</td>
-<td>500 MB (PostgreSQL + Python)</td>
-<td>2 GB</td>
-</tr>
-<tr>
-<td>Display</td>
-<td>1366 × 768</td>
-<td>1920 × 1080</td>
-</tr>
-<tr>
-<td>Network</td>
-<td>Not required (single PC demo)</td>
-<td>LAN if multiple counters share one database server</td>
-</tr>
-</tbody>
-</table>
-<h3 id="52-software-requirements">5.2 Software requirements</h3>
-<table>
-<thead>
-<tr>
-<th>Software</th>
-<th>Version used</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Operating system</td>
-<td>Windows 10/11, Ubuntu 22.04+ or macOS</td>
-<td>Run the project</td>
-</tr>
-<tr>
-<td>PostgreSQL</td>
-<td>16 (14 or later works)</td>
-<td>Relational database server</td>
-</tr>
-<tr>
-<td>pgAdmin 4 <em>or</em> <code>psql</code></td>
-<td>Any recent version</td>
-<td>Create the database, run SQL scripts</td>
-</tr>
-<tr>
-<td>Python</td>
-<td>3.10 or later (3.11 used)</td>
-<td>Application language</td>
-</tr>
-<tr>
-<td>psycopg2</td>
-<td><code>psycopg2-binary</code> 2.9.x</td>
-<td>PostgreSQL driver for Python</td>
-</tr>
-<tr>
-<td>Terminal / Command Prompt</td>
-<td>Built in</td>
-<td>Run <code>python main.py</code></td>
-</tr>
-<tr>
-<td>Text editor / VS Code</td>
-<td>Any</td>
-<td>Edit the source code</td>
-</tr>
-</tbody>
-</table>
-<p>No external Python framework (Django, Flask, Tkinter, pandas, …) is used.
-The project needs <strong>only</strong> the Python standard library plus <code>psycopg2</code>, which
-keeps it beginner-friendly.</p>
-<hr />
-<h2 id="6-description-of-functional-modules">6. Description of functional modules</h2>
-<p>The application has a main menu with six functional modules. Each module
-has its own sub-menu and calls the functions of one Python file.</p>
-<h3 id="61-customer-management-appcustomerspy">6.1 Customer management (<code>app/customers.py</code>)</h3>
-<table>
-<thead>
-<tr>
-<th>Operation</th>
-<th>SQL used</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Add a customer</td>
-<td><code>INSERT INTO customer … RETURNING customer_id</code></td>
-</tr>
-<tr>
-<td>View all customers</td>
-<td><code>SELECT … ORDER BY customer_id</code></td>
-</tr>
-<tr>
-<td>Search by ID / name / phone</td>
-<td><code>SELECT … WHERE customer_id = %s OR phone = %s OR LOWER(full_name) LIKE %s</code></td>
-</tr>
-<tr>
-<td>Update details</td>
-<td><code>UPDATE customer SET … WHERE customer_id = %s</code></td>
-</tr>
-<tr>
-<td>Delete a customer</td>
-<td><code>DELETE FROM customer WHERE customer_id = %s</code></td>
-</tr>
-</tbody>
-</table>
-<p>The program validates the e-mail format, the 10-digit phone number and the
-ID-proof type before contacting the database. A customer who already has
-reservations cannot be deleted — the foreign key from <code>reservation</code>
-(<code>ON DELETE RESTRICT</code>) protects referential integrity, and the program
-explains this to the user instead of showing an SQL error.</p>
-<h3 id="62-room-management-approomspy">6.2 Room management (<code>app/rooms.py</code>)</h3>
-<ul>
-<li>Add a room (room number, category, floor, price per night, maximum guests,
-  initial status).</li>
-<li>Display all rooms and the tariff of every category (with <code>GROUP BY</code>).</li>
-<li>Display currently available rooms.</li>
-<li>Update a room's details or status (<code>Available</code>, <code>Occupied</code>,
-  <code>Maintenance</code>). A room with a checked-in guest cannot be set to
-  <code>Available</code>.</li>
-<li>Availability <strong>for a date range</strong> is computed in the reservation module by
-  looking for overlapping reservations — this is the correct way, because a
-  room can be sold today and free next week.</li>
-</ul>
-<h3 id="63-reservation-management-appreservationspy">6.3 Reservation management (<code>app/reservations.py</code>)</h3>
-<ul>
-<li><strong>Book a room:</strong> choose the customer (search by name/phone/ID), choose
-  check-in and check-out dates and the number of guests, then the system
-  lists only the rooms that are free for those dates and can hold the party.</li>
-<li><strong>Availability check:</strong> <code>NOT EXISTS</code> sub-query over <code>reservation</code> with the
-  overlap test <code>existing.check_in &lt; wanted.check_out AND
-  existing.check_out &gt; wanted.check_in</code>, ignoring cancelled bookings and
-  rooms under maintenance.</li>
-<li><strong>Bill calculation:</strong> <code>total_amount = (check_out − check_in) × price_per_night</code>,
-  shown to the user for confirmation before saving.</li>
-<li>A <code>payment</code> row with status <code>Pending</code> is inserted in the same flow, so the
-  payment module always has a record to work on.</li>
-<li>View all reservations (filtered by status or customer), view one
-  reservation with its payment, and cancel a reservation (only a <code>Booked</code>
-  reservation can be cancelled; a refundable amount is marked <code>Refunded</code>).</li>
-</ul>
-<h3 id="64-check-in-and-check-out-management-appfrontdeskpy">6.4 Check-in and check-out management (<code>app/frontdesk.py</code>)</h3>
-<table>
-<thead>
-<tr>
-<th>Operation</th>
-<th>Reservation status</th>
-<th>Room status</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Check-in</td>
-<td><code>Booked</code> → <code>CheckedIn</code>, <code>actual_check_in</code> set</td>
-<td><code>Available</code> → <code>Occupied</code></td>
-</tr>
-<tr>
-<td>Check-out</td>
-<td><code>CheckedIn</code> → <code>CheckedOut</code>, <code>actual_check_out</code> set</td>
-<td><code>Occupied</code> → <code>Available</code></td>
-</tr>
-</tbody>
-</table>
-<p>Both statements are executed inside <strong>one transaction</strong>
-(<code>db.run_in_transaction</code>). If the second <code>UPDATE</code> fails, the first is rolled
-back, so the database can never end up with a guest inside a "free" room.
-The module also lists today's expected arrivals and departures, and offers
-to collect the payment during check-out.</p>
-<h3 id="65-payment-management-apppaymentspy">6.5 Payment management (<code>app/payments.py</code>)</h3>
-<ul>
-<li>Record a payment against a reservation (method <strong>Cash / Card / UPI</strong>,
-  optional transaction reference).</li>
-<li>Change the payment status from <code>Pending</code> to <code>Paid</code>, or mark a paid amount
-  as <code>Refunded</code>.</li>
-<li>Display payment details, including a filter for pending payments and the
-  outstanding amount.</li>
-</ul>
-<h3 id="66-reports-and-search-appreportspy">6.6 Reports and search (<code>app/reports.py</code>)</h3>
-<ol>
-<li>All reservations (with customer, room, payment status).</li>
-<li>Currently occupied rooms and the guests staying in them (occupancy %).</li>
-<li>Rooms available right now.</li>
-<li>Customer booking history (bookings, completed stays, cancellations,
-   money spent) — all customers or one selected customer.</li>
-<li>Total hotel revenue — overall, by payment method and by month, plus the
-   pending and refunded amounts.</li>
-<li>Most frequently booked room type.</li>
-<li>Room-status / occupancy summary and per-room-type performance.</li>
-<li>Search reservations by customer, by date or by status.</li>
-</ol>
-<hr />
-<h2 id="7-database-design">7. Database design</h2>
-<p><strong>Database name:</strong> <code>hotel_db</code><br />
-<strong>Schema scripts:</strong> <code>sql/01_schema.sql</code> (tables, constraints, indexes, views),
-<code>sql/02_sample_data.sql</code> (sample data).</p>
-<h3 id="71-entityrelationship-summary">7.1 Entity–relationship summary</h3>
-<table>
-<thead>
-<tr>
-<th>Relationship</th>
-<th>Cardinality</th>
-<th>Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CUSTOMER — makes — RESERVATION</td>
-<td>1 : N</td>
-<td>One customer can make many reservations; every reservation belongs to exactly one customer.</td>
-</tr>
-<tr>
-<td>ROOM — booked in — RESERVATION</td>
-<td>1 : N</td>
-<td>One room can be booked many times (on different dates); every reservation is for exactly one room.</td>
-</tr>
-<tr>
-<td>RESERVATION — paid by — PAYMENT</td>
-<td>1 : 1</td>
-<td>Every reservation has at most one payment record (<code>UNIQUE</code> on <code>reservation_id</code>).</td>
-</tr>
-</tbody>
-</table>
-<h3 id="72-table-customer">7.2 Table: <code>customer</code></h3>
-<table>
-<thead>
-<tr>
-<th>Column</th>
-<th>Type</th>
-<th>Constraints</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>customer_id</code></td>
-<td><code>SERIAL</code></td>
-<td><strong>PRIMARY KEY</strong></td>
-<td>Surrogate key, auto-incremented</td>
-</tr>
-<tr>
-<td><code>full_name</code></td>
-<td><code>VARCHAR(100)</code></td>
-<td><code>NOT NULL</code>, <code>CHECK (length ≥ 3)</code></td>
-<td>Guest name</td>
-</tr>
-<tr>
-<td><code>email</code></td>
-<td><code>VARCHAR(120)</code></td>
-<td><code>NOT NULL</code>, <code>UNIQUE</code>, <code>CHECK</code> contains <code>@</code> and <code>.</code></td>
-<td>Contact e-mail</td>
-</tr>
-<tr>
-<td><code>phone</code></td>
-<td><code>VARCHAR(15)</code></td>
-<td><code>NOT NULL</code>, <code>UNIQUE</code>, <code>CHECK</code> 10 digits</td>
-<td>Mobile number</td>
-</tr>
-<tr>
-<td><code>address</code></td>
-<td><code>VARCHAR(200)</code></td>
-<td>—</td>
-<td>Postal address (optional)</td>
-</tr>
-<tr>
-<td><code>id_proof_type</code></td>
-<td><code>VARCHAR(20)</code></td>
-<td><code>NOT NULL</code>, <code>CHECK IN ('Aadhaar','Passport','Driving Licence','Voter ID')</code></td>
-<td>Type of government ID</td>
-</tr>
-<tr>
-<td><code>id_proof_number</code></td>
-<td><code>VARCHAR(30)</code></td>
-<td><code>NOT NULL</code>, <code>UNIQUE</code></td>
-<td>ID number</td>
-</tr>
-<tr>
-<td><code>created_at</code></td>
-<td><code>TIMESTAMP</code></td>
-<td><code>NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td>
-<td>Registration time</td>
-</tr>
-</tbody>
-</table>
-<h3 id="73-table-room">7.3 Table: <code>room</code></h3>
-<table>
-<thead>
-<tr>
-<th>Column</th>
-<th>Type</th>
-<th>Constraints</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>room_id</code></td>
-<td><code>SERIAL</code></td>
-<td><strong>PRIMARY KEY</strong></td>
-<td>Surrogate key</td>
-</tr>
-<tr>
-<td><code>room_number</code></td>
-<td><code>VARCHAR(10)</code></td>
-<td><code>NOT NULL</code>, <code>UNIQUE</code></td>
-<td>Printed room number, e.g. <code>101</code></td>
-</tr>
-<tr>
-<td><code>room_type</code></td>
-<td><code>VARCHAR(20)</code></td>
-<td><code>NOT NULL</code>, <code>CHECK IN ('Single','Double','Deluxe','Suite')</code></td>
-<td>Category</td>
-</tr>
-<tr>
-<td><code>floor_no</code></td>
-<td><code>INTEGER</code></td>
-<td><code>NOT NULL</code>, <code>CHECK BETWEEN 0 AND 20</code></td>
-<td>Floor</td>
-</tr>
-<tr>
-<td><code>price_per_night</code></td>
-<td><code>NUMERIC(10,2)</code></td>
-<td><code>NOT NULL</code>, <code>CHECK &gt; 0</code></td>
-<td>Tariff per night</td>
-</tr>
-<tr>
-<td><code>max_occupancy</code></td>
-<td><code>INTEGER</code></td>
-<td><code>NOT NULL</code>, <code>CHECK BETWEEN 1 AND 6</code></td>
-<td>Maximum guests</td>
-</tr>
-<tr>
-<td><code>status</code></td>
-<td><code>VARCHAR(20)</code></td>
-<td><code>NOT NULL DEFAULT 'Available'</code>, <code>CHECK IN ('Available','Occupied','Maintenance')</code></td>
-<td>Current physical state</td>
-</tr>
-<tr>
-<td><code>created_at</code></td>
-<td><code>TIMESTAMP</code></td>
-<td><code>NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td>
-<td>When the room was added</td>
-</tr>
-</tbody>
-</table>
-<h3 id="74-table-reservation">7.4 Table: <code>reservation</code></h3>
-<table>
-<thead>
-<tr>
-<th>Column</th>
-<th>Type</th>
-<th>Constraints</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>reservation_id</code></td>
-<td><code>SERIAL</code></td>
-<td><strong>PRIMARY KEY</strong></td>
-<td>Surrogate key</td>
-</tr>
-<tr>
-<td><code>customer_id</code></td>
-<td><code>INTEGER</code></td>
-<td><code>NOT NULL</code>, <strong>FOREIGN KEY</strong> → <code>customer.customer_id</code> (<code>ON DELETE RESTRICT</code>)</td>
-<td>Who booked</td>
-</tr>
-<tr>
-<td><code>room_id</code></td>
-<td><code>INTEGER</code></td>
-<td><code>NOT NULL</code>, <strong>FOREIGN KEY</strong> → <code>room.room_id</code> (<code>ON DELETE RESTRICT</code>)</td>
-<td>Which room</td>
-</tr>
-<tr>
-<td><code>check_in_date</code></td>
-<td><code>DATE</code></td>
-<td><code>NOT NULL</code></td>
-<td>Planned arrival</td>
-</tr>
-<tr>
-<td><code>check_out_date</code></td>
-<td><code>DATE</code></td>
-<td><code>NOT NULL</code>, <code>CHECK (check_out_date &gt; check_in_date)</code></td>
-<td>Planned departure</td>
-</tr>
-<tr>
-<td><code>booking_date</code></td>
-<td><code>DATE</code></td>
-<td><code>NOT NULL DEFAULT CURRENT_DATE</code>, <code>CHECK (booking_date &lt;= check_in_date)</code></td>
-<td>When the booking was made</td>
-</tr>
-<tr>
-<td><code>num_guests</code></td>
-<td><code>INTEGER</code></td>
-<td><code>NOT NULL</code>, <code>CHECK BETWEEN 1 AND 6</code></td>
-<td>Number of guests</td>
-</tr>
-<tr>
-<td><code>total_amount</code></td>
-<td><code>NUMERIC(10,2)</code></td>
-<td><code>NOT NULL</code>, <code>CHECK &gt;= 0</code></td>
-<td>Bill = nights × room price</td>
-</tr>
-<tr>
-<td><code>status</code></td>
-<td><code>VARCHAR(20)</code></td>
-<td><code>NOT NULL DEFAULT 'Booked'</code>, <code>CHECK IN ('Booked','CheckedIn','CheckedOut','Cancelled')</code></td>
-<td>Reservation life cycle</td>
-</tr>
-<tr>
-<td><code>actual_check_in</code></td>
-<td><code>TIMESTAMP</code></td>
-<td><code>CHECK</code> not earlier than <code>check_in_date</code></td>
-<td>Real arrival time</td>
-</tr>
-<tr>
-<td><code>actual_check_out</code></td>
-<td><code>TIMESTAMP</code></td>
-<td><code>CHECK</code> not earlier than <code>actual_check_in</code></td>
-<td>Real departure time</td>
-</tr>
-</tbody>
-</table>
-<h3 id="75-table-payment">7.5 Table: <code>payment</code></h3>
-<table>
-<thead>
-<tr>
-<th>Column</th>
-<th>Type</th>
-<th>Constraints</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>payment_id</code></td>
-<td><code>SERIAL</code></td>
-<td><strong>PRIMARY KEY</strong></td>
-<td>Surrogate key</td>
-</tr>
-<tr>
-<td><code>reservation_id</code></td>
-<td><code>INTEGER</code></td>
-<td><code>NOT NULL</code>, <strong>UNIQUE</strong>, <strong>FOREIGN KEY</strong> → <code>reservation.reservation_id</code> (<code>ON DELETE CASCADE</code>)</td>
-<td>One payment per reservation</td>
-</tr>
-<tr>
-<td><code>amount</code></td>
-<td><code>NUMERIC(10,2)</code></td>
-<td><code>NOT NULL</code>, <code>CHECK &gt; 0</code></td>
-<td>Amount collected</td>
-</tr>
-<tr>
-<td><code>payment_method</code></td>
-<td><code>VARCHAR(10)</code></td>
-<td><code>NOT NULL</code>, <code>CHECK IN ('Cash','Card','UPI')</code></td>
-<td>Mode of payment</td>
-</tr>
-<tr>
-<td><code>payment_status</code></td>
-<td><code>VARCHAR(20)</code></td>
-<td><code>NOT NULL DEFAULT 'Pending'</code>, <code>CHECK IN ('Pending','Paid','Refunded')</code></td>
-<td>Payment state</td>
-</tr>
-<tr>
-<td><code>payment_date</code></td>
-<td><code>TIMESTAMP</code></td>
-<td><code>NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td>
-<td>When it was recorded</td>
-</tr>
-<tr>
-<td><code>transaction_ref</code></td>
-<td><code>VARCHAR(40)</code></td>
-<td>—</td>
-<td>Card / UPI reference (optional)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="76-supporting-objects">7.6 Supporting objects</h3>
-<ul>
-<li><strong>Indexes</strong> on all foreign keys and on frequently filtered columns
-  (<code>idx_reservation_customer</code>, <code>idx_reservation_room</code>,
-  <code>idx_reservation_status</code>, <code>idx_reservation_dates</code>,
-  <code>idx_payment_status</code>, <code>idx_room_type</code>).</li>
-<li><strong>Function</strong> <code>fn_stay_nights(check_in, check_out)</code> returns the number of
-  nights — used by the views and the application.</li>
-<li><strong>Views</strong> (5): <code>vw_reservation_details</code>, <code>vw_room_current_status</code>,
-  <code>vw_payment_details</code>, <code>vw_customer_booking_history</code>,
-  <code>vw_hotel_revenue</code>.</li>
-</ul>
-<hr />
-<h2 id="8-er-diagram">8. ER diagram</h2>
-<p><img alt="Entity Relationship Diagram" src="Hotel_management_DBMS.png" /></p>
-<p><em>Figure 8.1 — ER diagram of the Hotel Management System (generated by
-<code>docs/tools/make_er_diagram.py</code>).</em></p>
-<p><strong>Reading the diagram</strong></p>
-<ul>
-<li>Rectangles are entities; every attribute of the entity is listed inside.</li>
-<li><code>PK</code> marks the primary key (also underlined), <code>FK</code> marks a foreign key and
-  <code>UQ</code> marks a <code>UNIQUE</code> attribute.</li>
-<li>Diamonds are relationships, and the <code>1</code> / <code>N</code> marks give the cardinality.</li>
-<li><code>CUSTOMER (1) ── makes ── (N) RESERVATION</code>: a customer can book many
-  times.</li>
-<li><code>ROOM (1) ── booked in ── (N) RESERVATION</code>: a room appears in many
-  reservations over time.</li>
-<li><code>RESERVATION (1) ── paid by ── (1) PAYMENT</code>: one payment record per
-  reservation (enforced by the <code>UNIQUE</code> constraint on
-  <code>payment.reservation_id</code>).</li>
-</ul>
-<p>The diagram matches the implemented schema exactly: the same attribute
-names, the same keys and the same optional (<code>NULL</code>-able) columns —
-<code>address</code>, <code>actual_check_in</code>, <code>actual_check_out</code> and <code>transaction_ref</code>.</p>
-<hr />
-<h2 id="9-relational-schema">9. Relational schema</h2>
-<p>Notation: <strong>bold</strong> = primary key, <em>italic</em> = foreign key,
-<code>[UQ]</code> = unique, <code>[NN]</code> = not null.</p>
-<pre><code>CUSTOMER (customer_id, full_name, email[UQ], phone[UQ], address,
-          id_proof_type, id_proof_number[UQ], created_at)
 
-ROOM     (room_id, room_number[UQ], room_type, floor_no, price_per_night,
-          max_occupancy, status, created_at)
+      <div class="info-panel">
+        <h3>Six modules</h3>
+        <ol>
+          <li>Customer management (<code>customers.py</code>)</li>
+          <li>Room management (<code>rooms.py</code>)</li>
+          <li>Reservation management (<code>reservations.py</code>)</li>
+          <li>Check-in / check-out (<code>frontdesk.py</code>)</li>
+          <li>Payment management (<code>payments.py</code>)</li>
+          <li>Reports and search (<code>reports.py</code>)</li>
+        </ol>
+      </div>
 
-RESERVATION (reservation_id, customer_id[FK→CUSTOMER], room_id[FK→ROOM],
-             check_in_date, check_out_date, booking_date, num_guests,
-             total_amount, status, actual_check_in, actual_check_out)
+      <div class="info-panel">
+        <h3>Booking / availability / billing logic</h3>
+        <ul>
+          <li>Date-wise availability is checked before a reservation is stored.</li>
+          <li>Total amount is computed automatically as <em>nights × room price</em>.</li>
+          <li>Check-in / check-out updates the reservation <strong>and</strong> the room in one atomic transaction.</li>
+        </ul>
+      </div>
 
-PAYMENT  (payment_id, reservation_id[FK→RESERVATION][UQ], amount,
-          payment_method, payment_status, payment_date, transaction_ref)
-</code></pre>
-<h3 id="91-key-identification">9.1 Key identification</h3>
-<table>
-<thead>
-<tr>
-<th>Table</th>
-<th>Primary key</th>
-<th>Foreign keys</th>
-<th>Other important constraints</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>customer</code></td>
-<td><code>customer_id</code></td>
-<td>—</td>
-<td><code>email</code>, <code>phone</code>, <code>id_proof_number</code> are <code>UNIQUE</code></td>
-</tr>
-<tr>
-<td><code>room</code></td>
-<td><code>room_id</code></td>
-<td>—</td>
-<td><code>room_number</code> is <code>UNIQUE</code>; <code>CHECK</code> on type, price, occupancy</td>
-</tr>
-<tr>
-<td><code>reservation</code></td>
-<td><code>reservation_id</code></td>
-<td><code>customer_id</code>, <code>room_id</code></td>
-<td><code>CHECK (check_out_date &gt; check_in_date)</code></td>
-</tr>
-<tr>
-<td><code>payment</code></td>
-<td><code>payment_id</code></td>
-<td><code>reservation_id</code></td>
-<td><code>UNIQUE(reservation_id)</code>, <code>CHECK</code> on method and status</td>
-</tr>
-</tbody>
-</table>
-<h3 id="92-referential-integrity-rules">9.2 Referential integrity rules</h3>
-<table>
-<thead>
-<tr>
-<th>Foreign key</th>
-<th>On update</th>
-<th>On delete</th>
-<th>Why</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>reservation.customer_id</code></td>
-<td><code>CASCADE</code></td>
-<td><code>RESTRICT</code></td>
-<td>A customer with bookings must not be deleted; their history stays intact.</td>
-</tr>
-<tr>
-<td><code>reservation.room_id</code></td>
-<td><code>CASCADE</code></td>
-<td><code>RESTRICT</code></td>
-<td>A booked room cannot be removed from the hotel.</td>
-</tr>
-<tr>
-<td><code>payment.reservation_id</code></td>
-<td><code>CASCADE</code></td>
-<td><code>CASCADE</code></td>
-<td>If a reservation is removed, its payment record is meaningless and is removed with it.</td>
-</tr>
-</tbody>
-</table>
-<p>The application additionally <em>checks</em> these rules and prints a friendly
-message before the database has to reject anything.</p>
-<hr />
-<h2 id="10-normalization">10. Normalization</h2>
-<p>Normalization removes redundancy and update anomalies. The design below is
-in <strong>third normal form (3NF)</strong>.</p>
-<h3 id="101-first-normal-form-1nf-atomic-values-only">10.1 First Normal Form (1NF) — atomic values only</h3>
-<p>Every column of every table stores a single, indivisible value: no repeating
-groups, no comma-separated lists and no multiple phone numbers in one
-column. If a guest had two phone numbers, a separate row (a new guest
-record) would be needed rather than <code>"98400…, 98401…"</code> in one cell.</p>
-<h3 id="102-second-normal-form-2nf-no-partial-dependency">10.2 Second Normal Form (2NF) — no partial dependency</h3>
-<p>2NF applies to tables with composite primary keys. In this design each table
-has a <strong>single-column surrogate key</strong> (<code>customer_id</code>, <code>room_id</code>,
-<code>reservation_id</code>, <code>payment_id</code>), so <em>every</em> non-key attribute depends on the
-whole key — there is no partial dependency. Example: in <code>reservation</code>,
-<code>total_amount</code> depends on <code>check_in_date</code>, <code>check_out_date</code> <strong>and</strong>
-<code>room_id</code>, all of which are attributes of the same reservation row.</p>
-<h3 id="103-third-normal-form-3nf-no-transitive-dependency">10.3 Third Normal Form (3NF) — no transitive dependency</h3>
-<p>No non-key column depends on another non-key column:</p>
-<ul>
-<li><code>price_per_night</code> is stored <strong>once</strong>, in <code>room</code>, not copied into every
-  reservation; <code>reservation.total_amount</code> is a <em>derived, stored historical
-  value</em> (the price at the time of booking, needed for old bills) and not a
-  copy of a mutable attribute.</li>
-<li>A room's category, floor and tariff are all properties of the room alone,
-  so they live in <code>room</code>, not in <code>reservation</code>.</li>
-<li>The guest's name, phone and e-mail live only in <code>customer</code>;
-  <code>payment</code> contains only payment data and a reference to the reservation,
-  instead of repeating the customer's name.</li>
-<li><code>payment_status</code> belongs to <code>payment</code>, <code>status</code> belongs to <code>reservation</code>;
-  they are never duplicated in another table.</li>
-</ul>
-<h3 id="104-decomposition-example">10.4 Decomposition example</h3>
-<p>An un-normalized booking sheet would look like:</p>
-<pre><code>BOOKING (customer_name, customer_phone, customer_email, room_no, room_type,
-         price, check_in, check_out, nights, total_amount, payment_method,
-         payment_status)
-</code></pre>
-<p>Problems: the same customer's phone is typed again for every booking (update
-anomaly), a new room cannot be recorded without a booking (insert anomaly),
-and deleting the last booking of a customer erases the customer (delete
-anomaly).</p>
-<p>Decomposition:</p>
-<table>
-<thead>
-<tr>
-<th>New table</th>
-<th>Attributes kept</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>customer</code></td>
-<td><code>customer_id</code>, <code>full_name</code>, <code>email</code>, <code>phone</code>, <code>address</code>, ID proof</td>
-</tr>
-<tr>
-<td><code>room</code></td>
-<td><code>room_id</code>, <code>room_number</code>, <code>room_type</code>, <code>floor_no</code>, <code>price_per_night</code>, <code>max_occupancy</code>, <code>status</code></td>
-</tr>
-<tr>
-<td><code>reservation</code></td>
-<td><code>reservation_id</code>, <code>customer_id</code>, <code>room_id</code>, dates, <code>num_guests</code>, <code>total_amount</code>, <code>status</code></td>
-</tr>
-<tr>
-<td><code>payment</code></td>
-<td><code>payment_id</code>, <code>reservation_id</code>, <code>amount</code>, method, status, date</td>
-</tr>
-</tbody>
-</table>
-<p>Each relationship that was inside <code>BOOKING</code> is now represented by a foreign
-key, and the decomposition is <strong>loss-less</strong> because every table can be
-re-joined on its primary key.</p>
-<h3 id="105-why-not-a-separate-room_type-table">10.5 Why not a separate <code>room_type</code> table?</h3>
-<p>A <code>room_type(room_type_id, category, default_price)</code> table would be
-"more normalized", but the category list is fixed by a <code>CHECK</code> constraint and
-the tariff differs per room (room 111 costs 4200 while room 105 costs 4000),
-so a separate table would add a join without removing any redundancy. For a
-college mini-project the simpler four-table design is correct and still 3NF.</p>
-<hr />
-<h2 id="11-sql-commands-and-queries">11. SQL commands and queries</h2>
-<p>All statements are in <code>sql/</code> and were executed on PostgreSQL 16. The complete
-output of every query is produced by running
-<code>psql -d hotel_db -f sql/03_queries.sql</code>.</p>
-<h3 id="111-create-table-excerpt-full-script-in-sql01_schemasql">11.1 <code>CREATE TABLE</code> (excerpt — full script in <code>sql/01_schema.sql</code>)</h3>
-<pre><code class="language-sql">CREATE TABLE reservation (
-    reservation_id    SERIAL        PRIMARY KEY,
-    customer_id       INTEGER       NOT NULL,
-    room_id           INTEGER       NOT NULL,
-    check_in_date     DATE          NOT NULL,
-    check_out_date    DATE          NOT NULL,
-    booking_date      DATE          NOT NULL DEFAULT CURRENT_DATE,
-    num_guests        INTEGER       NOT NULL CHECK (num_guests BETWEEN 1 AND 6),
-    total_amount      NUMERIC(10,2) NOT NULL CHECK (total_amount &gt;= 0),
-    status            VARCHAR(20)   NOT NULL DEFAULT 'Booked'
-                      CHECK (status IN ('Booked','CheckedIn','CheckedOut','Cancelled')),
-    actual_check_in   TIMESTAMP,
-    actual_check_out  TIMESTAMP,
+      <div class="info-panel">
+        <h3>Visitor actions</h3>
+        <ul>
+          <li>Search customers by name, phone or ID.</li>
+          <li>Book a room after an availability check.</li>
+          <li>Record check-in and check-out.</li>
+          <li>Record payments (Cash / Card / UPI) or refunds.</li>
+          <li>Run the eight management reports instantly.</li>
+        </ul>
+      </div>
 
-    CONSTRAINT fk_reservation_customer
-        FOREIGN KEY (customer_id) REFERENCES customer (customer_id)
-        ON UPDATE CASCADE ON DELETE RESTRICT,
-    CONSTRAINT fk_reservation_room
-        FOREIGN KEY (room_id) REFERENCES room (room_id)
-        ON UPDATE CASCADE ON DELETE RESTRICT,
-    CONSTRAINT chk_reservation_dates
-        CHECK (check_out_date &gt; check_in_date),
-    CONSTRAINT chk_reservation_booking_date
-        CHECK (booking_date &lt;= check_in_date)
-);
-</code></pre>
-<h3 id="112-insert-update-delete">11.2 <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code></h3>
-<pre><code class="language-sql">-- INSERT (Q2): the generated primary key is returned to the caller
-INSERT INTO customer (full_name, email, phone, address, id_proof_type, id_proof_number)
-VALUES ('Demo Guest', 'demo.guest@example.com', '9000000001',
-        '1, Demo Street, Chennai', 'Aadhaar', 'AAD999999999')
-RETURNING customer_id, full_name, email, created_at;
-
--- UPDATE with WHERE (Q3)
-UPDATE customer SET address = '2, New Street, Chennai'
-WHERE email = 'demo.guest@example.com';
-
--- DELETE with WHERE (Q4)
-DELETE FROM customer WHERE email = 'demo.guest@example.com';
-</code></pre>
-<p>Expected output of the <code>INSERT</code>: one row with <code>customer_id = 13</code>. The
-<code>UPDATE</code> reports <code>UPDATE 1</code>, the <code>DELETE</code> reports <code>DELETE 1</code>. These three
-statements run inside a transaction that is rolled back, so the sample data
-stays unchanged.</p>
-<h3 id="113-select-with-where-order-by-like-between-limit">11.3 <code>SELECT</code> with <code>WHERE</code>, <code>ORDER BY</code>, <code>LIKE</code>, <code>BETWEEN</code>, <code>LIMIT</code></h3>
-<pre><code class="language-sql">-- Q5: rooms above 4000, cheapest first
-SELECT room_number, room_type, price_per_night, status
-FROM room
-WHERE price_per_night &gt; 4000
-ORDER BY price_per_night;
-</code></pre>
-<table>
-<thead>
-<tr>
-<th>room_number</th>
-<th>room_type</th>
-<th>price_per_night</th>
-<th>status</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>111</td>
-<td>Deluxe</td>
-<td>4200.00</td>
-<td>Available</td>
-</tr>
-<tr>
-<td>201</td>
-<td>Deluxe</td>
-<td>4500.00</td>
-<td>Available</td>
-</tr>
-<tr>
-<td>107</td>
-<td>Suite</td>
-<td>7500.00</td>
-<td>Occupied</td>
-</tr>
-<tr>
-<td>108</td>
-<td>Suite</td>
-<td>7500.00</td>
-<td>Available</td>
-</tr>
-<tr>
-<td>112</td>
-<td>Suite</td>
-<td>8000.00</td>
-<td>Occupied</td>
-</tr>
-</tbody>
-</table>
-<pre><code class="language-sql">-- Q8: what the app's search box runs
-SELECT customer_id, full_name, phone, email
-FROM customer
-WHERE LOWER(full_name) LIKE LOWER('%arjun%') OR phone = '9840012301';
-</code></pre>
-<table>
-<thead>
-<tr>
-<th>customer_id</th>
-<th>full_name</th>
-<th>phone</th>
-<th>email</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Arjun Kumar</td>
-<td>9840012301</td>
-<td>arjun.kumar@example.com</td>
-</tr>
-</tbody>
-</table>
-<h3 id="114-aggregate-functions-group-by-having">11.4 Aggregate functions, <code>GROUP BY</code>, <code>HAVING</code></h3>
-<pre><code class="language-sql">-- Q11: all five aggregate functions on one column
-SELECT COUNT(*) AS total_rooms,
-       MIN(price_per_night) AS cheapest_room,
-       MAX(price_per_night) AS costliest_room,
-       ROUND(AVG(price_per_night), 2) AS average_tariff,
-       SUM(price_per_night) AS sum_of_tariffs
-FROM room;
-</code></pre>
-<table>
-<thead>
-<tr>
-<th>total_rooms</th>
-<th>cheapest_room</th>
-<th>costliest_room</th>
-<th>average_tariff</th>
-<th>sum_of_tariffs</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>14</td>
-<td>1500.00</td>
-<td>8000.00</td>
-<td>3900.00</td>
-<td>54600.00</td>
-</tr>
-</tbody>
-</table>
-<pre><code class="language-sql">-- Q13 + Q14: per-category statistics, filtered with HAVING
-SELECT room_type, COUNT(*) AS rooms,
-       ROUND(AVG(price_per_night), 2) AS avg_price,
-       MIN(price_per_night) AS min_price,
-       MAX(price_per_night) AS max_price
-FROM room
-GROUP BY room_type
-HAVING COUNT(*) &gt;= 3 AND AVG(price_per_night) &gt; 3000
-ORDER BY avg_price DESC;
-</code></pre>
-<table>
-<thead>
-<tr>
-<th>room_type</th>
-<th>rooms</th>
-<th>avg_price</th>
-<th>min_price</th>
-<th>max_price</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Suite</td>
-<td>3</td>
-<td>7666.67</td>
-<td>7500.00</td>
-<td>8000.00</td>
-</tr>
-<tr>
-<td>Deluxe</td>
-<td>4</td>
-<td>4175.00</td>
-<td>4000.00</td>
-<td>4500.00</td>
-</tr>
-</tbody>
-</table>
-<pre><code class="language-sql">-- Q12: revenue collected
-SELECT COUNT(*) AS paid_transactions, SUM(amount) AS total_revenue,
-       ROUND(AVG(amount), 2) AS average_payment
-FROM payment
-WHERE payment_status = 'Paid';
-</code></pre>
-<table>
-<thead>
-<tr>
-<th>paid_transactions</th>
-<th>total_revenue</th>
-<th>average_payment</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>9</td>
-<td>101100.00</td>
-<td>11233.33</td>
-</tr>
-</tbody>
-</table>
-<h3 id="115-joins">11.5 Joins</h3>
-<pre><code class="language-sql">-- Q18: INNER JOIN of three tables
-SELECT r.reservation_id, c.full_name, rm.room_number, rm.room_type,
-       r.check_in_date, r.check_out_date, r.total_amount, r.status
-FROM reservation r
-INNER JOIN customer c ON c.customer_id = r.customer_id
-INNER JOIN room     rm ON rm.room_id    = r.room_id
-ORDER BY r.reservation_id;
-</code></pre>
-<p>First rows of the result (16 rows in total):</p>
-<table>
-<thead>
-<tr>
-<th>reservation_id</th>
-<th>full_name</th>
-<th>room_number</th>
-<th>room_type</th>
-<th>check_in_date</th>
-<th>check_out_date</th>
-<th>total_amount</th>
-<th>status</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Arjun Kumar</td>
-<td>102</td>
-<td>Single</td>
-<td>2026-10-28</td>
-<td>2026-11-01</td>
-<td>6000.00</td>
-<td>CheckedIn</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Priya Raman</td>
-<td>104</td>
-<td>Double</td>
-<td>2026-10-29</td>
-<td>2026-11-02</td>
-<td>10000.00</td>
-<td>CheckedIn</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Rahul Sharma</td>
-<td>107</td>
-<td>Suite</td>
-<td>2026-10-27</td>
-<td>2026-10-31</td>
-<td>30000.00</td>
-<td>CheckedIn</td>
-</tr>
-<tr>
-<td>4</td>
-<td>Sneha Iyer</td>
-<td>202</td>
-<td>Double</td>
-<td>2026-10-26</td>
-<td>2026-11-01</td>
-<td>16200.00</td>
-<td>CheckedIn</td>
-</tr>
-</tbody>
-</table>
-<pre><code class="language-sql">-- Q20: LEFT JOIN keeps customers who never booked
-SELECT c.customer_id, c.full_name,
-       COUNT(r.reservation_id) AS bookings,
-       COALESCE(SUM(r.total_amount), 0) AS booking_value
-FROM customer c
-LEFT JOIN reservation r ON r.customer_id = c.customer_id
-GROUP BY c.customer_id, c.full_name
-ORDER BY bookings DESC, c.customer_id;
-</code></pre>
-<pre><code class="language-sql">-- Q21: LEFT JOIN room -&gt; reservation shows the never-booked room
-SELECT rm.room_id, rm.room_number, rm.room_type,
-       COUNT(r.reservation_id) FILTER (WHERE r.status &lt;&gt; 'Cancelled')
-                                 AS confirmed_bookings
-FROM room rm
-LEFT JOIN reservation r ON r.room_id = rm.room_id
-GROUP BY rm.room_id, rm.room_number, rm.room_type
-ORDER BY rm.room_id;
-</code></pre>
-<p>Room <code>110</code> (Double, under maintenance) appears with <code>0</code> bookings, which an
-<code>INNER JOIN</code> would have hidden.</p>
-<h3 id="116-subqueries">11.6 Subqueries</h3>
-<pre><code class="language-sql">-- Q24: scalar subquery — rooms above the average price
-SELECT room_number, room_type, price_per_night
-FROM room
-WHERE price_per_night &gt; (SELECT AVG(price_per_night) FROM room)
-ORDER BY price_per_night;
-
--- Q23: NOT EXISTS — rooms never booked
-SELECT room_number, room_type, status
-FROM room rm
-WHERE NOT EXISTS (SELECT 1 FROM reservation r WHERE r.room_id = rm.room_id);
-
--- Q26: derived table — the most frequently booked room type
-SELECT room_type, times_booked
-FROM (SELECT rm.room_type, COUNT(*) AS times_booked
-      FROM reservation r
-      INNER JOIN room rm ON rm.room_id = r.room_id
-      WHERE r.status &lt;&gt; 'Cancelled'
-      GROUP BY rm.room_type) AS booking_counts
-ORDER BY times_booked DESC, room_type
-LIMIT 1;
-</code></pre>
-<table>
-<thead>
-<tr>
-<th>room_type</th>
-<th>times_booked</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Deluxe</td>
-<td>5</td>
-</tr>
-</tbody>
-</table>
-<pre><code class="language-sql">-- Q25: correlated subquery — customers above the average booking value
-SELECT c.customer_id, c.full_name, SUM(r.total_amount) AS total_booking_value
-FROM customer c
-INNER JOIN reservation r ON r.customer_id = c.customer_id
-GROUP BY c.customer_id, c.full_name
-HAVING SUM(r.total_amount) &gt; (SELECT AVG(total_amount) FROM reservation)
-ORDER BY total_booking_value DESC;
-</code></pre>
-<h3 id="117-date-wise-availability-query">11.7 Date-wise availability query</h3>
-<pre><code class="language-sql">-- Q27: rooms free between two dates (the heart of the booking module)
-SELECT rm.room_id, rm.room_number, rm.room_type, rm.price_per_night
-FROM room rm
-WHERE rm.status &lt;&gt; 'Maintenance'
-  AND NOT EXISTS (
-        SELECT 1
-        FROM reservation r
-        WHERE r.room_id = rm.room_id
-          AND r.status IN ('Booked', 'CheckedIn')
-          AND r.check_in_date  &lt; DATE '2026-12-03'     -- wanted check-out
-          AND r.check_out_date &gt; DATE '2026-12-01'     -- wanted check-in
-      )
-ORDER BY rm.price_per_night;
-</code></pre>
-<p>Two stays overlap when the existing check-in is before the wanted check-out
-<strong>and</strong> the existing check-out is after the wanted check-in. Cancelled
-reservations are ignored, so cancelling a booking frees the room
-automatically.</p>
-<h3 id="118-views">11.8 Views</h3>
-<pre><code class="language-sql">CREATE VIEW vw_reservation_details AS
-SELECT r.reservation_id, c.customer_id, c.full_name AS customer_name,
-       c.phone AS customer_phone, rm.room_number, rm.room_type,
-       rm.price_per_night, r.check_in_date, r.check_out_date,
-       fn_stay_nights(r.check_in_date, r.check_out_date) AS nights,
-       r.num_guests, r.total_amount, r.status,
-       COALESCE(p.payment_status, 'Not Paid') AS payment_status
-FROM reservation r
-INNER JOIN customer c ON c.customer_id = r.customer_id
-INNER JOIN room     rm ON rm.room_id   = r.room_id
-LEFT  JOIN payment  p  ON p.reservation_id = r.reservation_id;
-</code></pre>
-<table>
-<thead>
-<tr>
-<th>View</th>
-<th>What it answers</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>vw_reservation_details</code></td>
-<td>Every reservation with guest, room and payment status (used by most screens)</td>
-</tr>
-<tr>
-<td><code>vw_room_current_status</code></td>
-<td>Which guest is currently in which room</td>
-</tr>
-<tr>
-<td><code>vw_payment_details</code></td>
-<td>Payments with guest and room information</td>
-</tr>
-<tr>
-<td><code>vw_customer_booking_history</code></td>
-<td>Per customer: bookings, completed stays, cancellations, total spent</td>
-</tr>
-<tr>
-<td><code>vw_hotel_revenue</code></td>
-<td>Paid transactions, total revenue, average/min/max payment</td>
-</tr>
-</tbody>
-</table>
-<h3 id="119-query-index-all-34-queries-in-sql03_queriessql">11.9 Query index (all 34 queries in <code>sql/03_queries.sql</code>)</h3>
-<table>
-<thead>
-<tr>
-<th>Query</th>
-<th>Concept demonstrated</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Q1</td>
-<td><code>CREATE TABLE AS</code> (table from a query)</td>
-</tr>
-<tr>
-<td>Q2</td>
-<td><code>INSERT … RETURNING</code></td>
-</tr>
-<tr>
-<td>Q3</td>
-<td><code>UPDATE … WHERE</code></td>
-</tr>
-<tr>
-<td>Q4</td>
-<td><code>DELETE … WHERE</code></td>
-</tr>
-<tr>
-<td>Q5</td>
-<td><code>SELECT</code>, <code>WHERE</code>, <code>ORDER BY</code></td>
-</tr>
-<tr>
-<td>Q6</td>
-<td><code>IN</code>, <code>AND</code>, comparison operators</td>
-</tr>
-<tr>
-<td>Q7</td>
-<td><code>LIKE</code>, <code>DISTINCT</code></td>
-</tr>
-<tr>
-<td>Q8</td>
-<td>Case-insensitive search with <code>LOWER()</code></td>
-</tr>
-<tr>
-<td>Q9</td>
-<td><code>BETWEEN</code> on dates</td>
-</tr>
-<tr>
-<td>Q10</td>
-<td><code>ORDER BY … LIMIT</code> (top-N)</td>
-</tr>
-<tr>
-<td>Q11</td>
-<td><code>COUNT</code>, <code>MIN</code>, <code>MAX</code>, <code>AVG</code>, <code>SUM</code></td>
-</tr>
-<tr>
-<td>Q12</td>
-<td>Aggregates with <code>WHERE</code></td>
-</tr>
-<tr>
-<td>Q13</td>
-<td><code>GROUP BY</code> with several aggregates</td>
-</tr>
-<tr>
-<td>Q14</td>
-<td><code>GROUP BY … HAVING</code></td>
-</tr>
-<tr>
-<td>Q15</td>
-<td><code>HAVING</code> on joined data</td>
-</tr>
-<tr>
-<td>Q16</td>
-<td><code>HAVING</code> on revenue</td>
-</tr>
-<tr>
-<td>Q17</td>
-<td><code>CASE</code> expression + <code>GROUP BY</code></td>
-</tr>
-<tr>
-<td>Q18</td>
-<td><code>INNER JOIN</code> of three tables</td>
-</tr>
-<tr>
-<td>Q19</td>
-<td><code>INNER JOIN</code> with a filter</td>
-</tr>
-<tr>
-<td>Q20</td>
-<td><code>LEFT JOIN</code> (customers without bookings)</td>
-</tr>
-<tr>
-<td>Q21</td>
-<td><code>LEFT JOIN</code> + <code>FILTER</code> (rooms never booked)</td>
-</tr>
-<tr>
-<td>Q22</td>
-<td>Subquery with <code>IN</code></td>
-</tr>
-<tr>
-<td>Q23</td>
-<td>Subquery with <code>NOT EXISTS</code></td>
-</tr>
-<tr>
-<td>Q24</td>
-<td>Scalar subquery</td>
-</tr>
-<tr>
-<td>Q25</td>
-<td>Correlated subquery</td>
-</tr>
-<tr>
-<td>Q26</td>
-<td>Subquery in <code>FROM</code> + <code>ORDER BY … LIMIT</code></td>
-</tr>
-<tr>
-<td>Q27</td>
-<td>Overlap test for date-wise availability</td>
-</tr>
-<tr>
-<td>Q28</td>
-<td>Availability of one specific room (used by the app)</td>
-</tr>
-<tr>
-<td>Q29–Q33</td>
-<td>The five views</td>
-</tr>
-<tr>
-<td>Q34</td>
-<td><code>TO_CHAR</code> + <code>GROUP BY</code> for monthly revenue</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="12-application-implementation">12. Application</h2>
-<p>The application is a menu-driven Python program that connects to PostgreSQL and performs all hotel management operations. It consists of six functional modules and handles booking, availability, billing logic, and visitor actions.</p>
-<p><strong>What it does:</strong></p>
-<ul>
-<li><strong>Customer management</strong> — add, list, search, update and delete guests.</li>
-<li><strong>Room management</strong> — add rooms, list all rooms, show tariff/occupancy, update status.</li>
-<li><strong>Reservation management</strong> — book a room, check availability, view and cancel reservations.</li>
-<li><strong>Check-in / check-out</strong> — record guest arrival and departure in one transaction.</li>
-<li><strong>Payment management</strong> — record Cash / Card / UPI payments and refunds.</li>
-<li><strong>Reports and search</strong> — eight reports built with joins, aggregates, views and subqueries.</li>
-</ul>
-<p><strong>Six modules:</strong></p>
-<ol>
-<li>Customer management (<code>customers.py</code>)</li>
-<li>Room management (<code>rooms.py</code>)</li>
-<li>Reservation management (<code>reservations.py</code>)</li>
-<li>Check-in / check-out (<code>frontdesk.py</code>)</li>
-<li>Payment management (<code>payments.py</code>)</li>
-<li>Reports and search (<code>reports.py</code>)</li>
-</ol>
-<p><strong>Booking / availability / billing logic:</strong></p>
-<ul>
-<li>Date-wise availability is checked before a reservation is stored.</li>
-<li>Total amount is computed automatically as <em>nights × room price</em>.</li>
-<li>Check-in / check-out updates the reservation <strong>and</strong> the room in one atomic transaction.</li>
-</ul>
-<p><strong>Visitor actions:</strong></p>
-<ul>
-<li>Search customers by name, phone or ID.</li>
-<li>Book a room after an availability check.</li>
-<li>Record check-in and check-out.</li>
-<li>Record payments (Cash / Card / UPI) or refunds.</li>
-<li>Run the eight management reports instantly.</li>
-</ul>
-<h3 id="121-architecture">12.1 Architecture</h3>
-<pre><code>        +-----------------------------+
+      <h3>12.1 Architecture</h3>
+      <pre><code>        +-----------------------------+
         |        main.py              |   menu, dispatch, error handling
         +--------------+--------------+
                        |
@@ -1499,496 +130,213 @@ customers  rooms        reservations     frontdesk     payments   reports
                        |
                  PostgreSQL  hotel_db
 </code></pre>
-<table>
-<thead>
-<tr>
-<th>File</th>
-<th>Responsibility</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>app/main.py</code></td>
-<td>Banner, connection test, main menu, calls the module menus</td>
-</tr>
-<tr>
-<td><code>app/config.py</code></td>
-<td>Reads <code>.env</code> / environment variables for the connection settings</td>
-</tr>
-<tr>
-<td><code>app/db.py</code></td>
-<td><code>Database</code> class: <code>query</code>, <code>query_one</code>, <code>scalar</code>, <code>execute</code>, <code>execute_returning</code>, <code>run_in_transaction</code>; converts PostgreSQL errors into readable messages</td>
-</tr>
-<tr>
-<td><code>app/ui.py</code></td>
-<td>Table printing, success/error/warning messages, and all validated input helpers (<code>ask</code>, <code>ask_int</code>, <code>ask_money</code>, <code>ask_date</code>, <code>ask_choice</code>, <code>ask_email</code>, <code>ask_phone</code>, <code>confirm</code>)</td>
-</tr>
-<tr>
-<td><code>app/customers.py</code></td>
-<td>Customer management module</td>
-</tr>
-<tr>
-<td><code>app/rooms.py</code></td>
-<td>Room management module + availability query</td>
-</tr>
-<tr>
-<td><code>app/reservations.py</code></td>
-<td>Reservation management module</td>
-</tr>
-<tr>
-<td><code>app/frontdesk.py</code></td>
-<td>Check-in / check-out module</td>
-</tr>
-<tr>
-<td><code>app/payments.py</code></td>
-<td>Payment management module</td>
-</tr>
-<tr>
-<td><code>app/reports.py</code></td>
-<td>Reports and search module</td>
-</tr>
-</tbody>
-</table>
-<h2 id="12-application">12. Application</h2>
-<p>The application is a menu-driven Python program that connects to PostgreSQL and performs all hotel management operations. It consists of six functional modules and handles booking, availability, billing logic, and visitor actions.</p>
-<p><strong>What it does:</strong></p>
-<ul>
-<li><strong>Customer management</strong> — add, list, search, update and delete guests.</li>
-<li><strong>Room management</strong> — add rooms, list all rooms, show tariff/occupancy, update status.</li>
-<li><strong>Reservation management</strong> — book a room, check availability, view and cancel reservations.</li>
-<li><strong>Check-in / check-out</strong> — record guest arrival and departure in one transaction.</li>
-<li><strong>Payment management</strong> — record Cash / Card / UPI payments and refunds.</li>
-<li><strong>Reports and search</strong> — eight reports built with joins, aggregates, views and subqueries.</li>
-</ul>
-<p><strong>Six modules:</strong></p>
-<ol>
-<li>Customer management (<code>customers.py</code>)</li>
-<li>Room management (<code>rooms.py</code>)</li>
-<li>Reservation management (<code>reservations.py</code>)</li>
-<li>Check-in / check-out (<code>frontdesk.py</code>)</li>
-<li>Payment management (<code>payments.py</code>)</li>
-<li>Reports and search (<code>reports.py</code>)</li>
-</ol>
-<p><strong>Booking / availability / billing logic:</strong></p>
-<ul>
-<li>Date-wise availability is checked before a reservation is stored.</li>
-<li>Total amount is computed automatically as <em>nights × room price</em>.</li>
-<li>Check-in / check-out updates the reservation <strong>and</strong> the room in one atomic transaction.</li>
-</ul>
-<p><strong>Visitor actions:</strong></p>
-<ul>
-<li>Search customers by name, phone or ID.</li>
-<li>Book a room after an availability check.</li>
-<li>Record check-in and check-out.</li>
-<li>Record payments (Cash / Card / UPI) or refunds.</li>
-<li>Run the eight management reports instantly.</li>
-</ul>
-<h3 id="121-architecture">12.1 Architecture</h3>
-<pre><code>        +-----------------------------+
-        |        main.py              |   menu, dispatch, error handling
-        +--------------+--------------+
-                       |
-   +---------+---------+--------+-------------+-----------+
-   |         |                  |             |           |
-customers  rooms        reservations     frontdesk     payments   reports
-   |         |                  |             |           |
-   +---------+---------+--------+-------------+-----------+
-                       |
-                  db.py  (only place that runs SQL)
-                       |
-                   psycopg2
-                       |
-                 PostgreSQL  hotel_db
-</code></pre><code>DATABASE_URL</code>). Copy <code>.env.example</code> to <code>.env</code>
-and edit it:</p>
-<pre><code>DB_HOST=localhost
+      <p>Configuration uses environment variables (<code>DATABASE_URL</code>). Copy <code>.env.example</code> to <code>.env</code> and edit it:</p>
+      <pre><code>DB_HOST=localhost
 DB_PORT=5432
 DB_NAME=hotel_db
 DB_USER=postgres
 DB_PASSWORD=postgres
 </code></pre>
-<p>Passwords are never written inside the Python source files.</p>
-<h3 id="124-project-website-single-place-for-everything">12.4 Project website (single place for everything)</h3>
-<p>The <code>website/</code> folder contains a static, dependency-free website that
-combines every deliverable of the project in one place:</p>
-<table>
-<thead>
-<tr>
-<th>Page / section</th>
-<th>Content</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Overview</td>
-<td>Abstract, objectives, modules, existing vs proposed system, setup</td>
-</tr>
-<tr>
-<td><strong>Application</strong></td>
-<td>What it does, six modules, booking/availability/billing logic, visitor actions</td>
-</tr>
-<tr>
-<td>Database design</td>
-<td>ER diagram, relational schema, constraints, normalization (1NF–3NF)</td>
-</tr>
-<tr>
-<td>Query gallery</td>
-<td>15 key queries with their <strong>live</strong> PostgreSQL result tables</td>
-</tr>
-<tr>
-<td>Screenshots</td>
-<td>The 21 console screenshots with captions</td>
-</tr>
-<tr>
-<td>All files</td>
-<td>Every script, source file, report and image, ready to download</td>
-</tr>
-</tbody>
-</table>
-<p>The website is <strong>generated from the project files and the database</strong>, never
-edited by hand, so it cannot disagree with the code:</p>
-<pre><code class="language-bash"># 1. make sure the database is loaded (sql/01_schema.sql + sql/02_sample_data.sql)
-# 2. build the site  (needs psycopg2 + markdown)
-python docs/tools/build_website.py
+      <p>Passwords are never written inside the Python source files.</p>
 
-# 3. serve it locally and open http://localhost:8080
-python -m http.server 8080 --directory website
-</code></pre>
-<p>The site is a convenient way to show the project during the viva: the live
-demo works without PostgreSQL, and the SQL log printed next to every action
-makes the database interaction visible on screen.</p>
-<hr />
-<h2 id="13-screenshots-and-sample-outputs">13. Screenshots and sample outputs</h2>
-<p>All screenshots are real console output of the program (generated by
-<code>docs/tools/make_screenshots.py</code>) and were taken on the sample database.</p>
-<h3 id="131-main-menu-and-database-connection">13.1 Main menu and database connection</h3>
-<p><img alt="Main menu" src="screenshots/01_main_menu.png" /></p>
-<p><em>Figure 13.1 — Startup screen: the connection to <code>hotel_db</code> is verified and
-the row counts prove that the sample data is loaded.</em></p>
-<h3 id="132-customer-management">13.2 Customer management</h3>
-<p><img alt="Add customer" src="screenshots/02_add_customer.png" /></p>
-<p><em>Figure 13.2 — Adding a customer (<code>INSERT … RETURNING</code> gives the new ID).</em></p>
-<p><img alt="View customers" src="screenshots/03_view_customers.png" /></p>
-<p><em>Figure 13.3 — Listing all customers ordered by <code>customer_id</code>.</em></p>
-<p><img alt="Search customer" src="screenshots/04_search_customer.png" /></p>
-<p><em>Figure 13.4 — Searching by name (<code>LIKE</code>) and showing the booking count from
-a <code>LEFT JOIN</code>.</em></p>
-<h3 id="133-room-management">13.3 Room management</h3>
-<p><img alt="Room list" src="screenshots/05_room_list.png" /></p>
-<p><em>Figure 13.5 — All 14 rooms with category, floor, tariff and current
-status.</em></p>
-<p><img alt="Tariff by type" src="screenshots/06_room_tariff.png" /></p>
-<p><em>Figure 13.6 — Per-category room count, availability and price range
-(<code>GROUP BY</code> with <code>COUNT … FILTER</code>).</em></p>
-<h3 id="134-reservation-management">13.4 Reservation management</h3>
-<p><img alt="Check availability" src="screenshots/07_check_availability.png" /></p>
-<p><em>Figure 13.7 — Date-wise availability: only rooms without an overlapping
-<code>Booked</code> / <code>CheckedIn</code> reservation are listed.</em></p>
-<p><img alt="Book room" src="screenshots/08_book_room.png" /></p>
-<p><em>Figure 13.8 — Booking flow: guest → dates → available rooms → bill preview
-→ confirmation. The total (13,500.00) is 3 nights × 4,500.00.</em></p>
-<p><img alt="View reservation" src="screenshots/09_view_reservation.png" /></p>
-<p><em>Figure 13.9 — One reservation with its payment record.</em></p>
-<h3 id="135-check-in-and-check-out">13.5 Check-in and check-out</h3>
-<p><img alt="Check-in" src="screenshots/10_check_in.png" /></p>
-<p><em>Figure 13.10 — Check-in sets the reservation to <code>CheckedIn</code>, the room to
-<code>Occupied</code>, and offers to collect the pending payment.</em></p>
-<p><img alt="Check-out" src="screenshots/11_check_out.png" /></p>
-<p><em>Figure 13.11 — Check-out sets the reservation to <code>CheckedOut</code> and frees the
-room (<code>Available</code>), in one transaction.</em></p>
-<h3 id="136-payment-management">13.6 Payment management</h3>
-<p><img alt="Pending payments" src="screenshots/12_payment_pending.png" /></p>
-<p><em>Figure 13.12 — Pending payments with the total outstanding amount.</em></p>
-<p><img alt="Record payment" src="screenshots/13_record_payment.png" /></p>
-<p><em>Figure 13.13 — Recording a card payment with a transaction reference.</em></p>
-<h3 id="137-reports">13.7 Reports</h3>
-<p><img alt="All reservations" src="screenshots/14_report_all_reservations.png" /></p>
-<p><em>Figure 13.14 — Reservation report built from <code>vw_reservation_details</code>.</em></p>
-<p><img alt="Occupied rooms" src="screenshots/15_report_occupied_rooms.png" /></p>
-<p><em>Figure 13.15 — Currently occupied rooms, guests and occupancy percentage.</em></p>
-<p><img alt="Customer history" src="screenshots/16_report_customer_history.png" /></p>
-<p><em>Figure 13.16 — Customer booking history (<code>LEFT JOIN</code> + <code>GROUP BY</code>).</em></p>
-<p><img alt="Revenue" src="screenshots/17_report_revenue.png" /></p>
-<p><em>Figure 13.17 — Total revenue, revenue by payment method and by month.</em></p>
-<p><img alt="Popular room type" src="screenshots/18_report_popular_room_type.png" /></p>
-<p><em>Figure 13.18 — Most frequently booked room type (Deluxe, 5 bookings).</em></p>
-<h3 id="138-sql-demonstration-in-psql">13.8 SQL demonstration in <code>psql</code></h3>
-<p><img alt="SQL structure" src="screenshots/19_sql_tables_and_aggregates.png" /></p>
-<p><em>Figure 13.19 — Table structure and constraints, plus the five aggregate
-functions.</em></p>
-<p><img alt="SQL group by" src="screenshots/20_sql_groupby_having.png" /></p>
-<p><em>Figure 13.20 — <code>GROUP BY</code> with <code>HAVING</code> and an <code>INNER JOIN</code>.</em></p>
-<p><img alt="SQL left join" src="screenshots/21_sql_leftjoin_subquery.png" /></p>
-<p><em>Figure 13.21 — <code>LEFT JOIN</code>, a subquery in <code>FROM</code> and a view.</em></p>
-<p>A complete text transcript of one demo session is available in
-<code>docs/SAMPLE_RUN_OUTPUT.txt</code>.</p>
-<hr />
-<h2 id="14-results-and-observations">14. Results and observations</h2>
-<h3 id="141-results">14.1 Results</h3>
-<ul>
-<li>All four tables, five views, indexes and the helper function were created
-  successfully in PostgreSQL 16 (<code>sql/01_schema.sql</code>).</li>
-<li>The sample database contains <strong>12 customers, 14 rooms (Single, Double,
-  Deluxe, Suite), 16 reservations (Booked, CheckedIn, CheckedOut, Cancelled)
-  and 16 payments (Cash, Card, UPI; Pending, Paid, Refunded)</strong>.</li>
-<li>Total revenue in the sample data is <strong>₹1,01,100.00</strong> from 9 paid
-  transactions; pending amount ₹83,000 and refunded amount ₹3,200 are
-  reported separately.</li>
-<li>All <strong>34 demonstration queries</strong> run without errors and produce the output
-  documented in section 11.</li>
-<li>Every module of the Python application was executed against the real
-  database: customer add/search/update/delete, room add/update, booking with
-  availability check and automatic billing, check-in, check-out, payment
-  recording, refund and all eight reports.</li>
-<li>Integrity rules were verified by deliberately trying to break them:
-  a duplicate e-mail, an invalid ID-proof type, a two-character name, a
-  check-out date before the check-in date, a room booked twice for the same
-  dates and deleting a customer who has reservations — each attempt was
-  rejected with a clear message.</li>
-</ul>
-<h3 id="142-observations">14.2 Observations</h3>
-<ol>
-<li><strong>Constraints are the real safety net.</strong> The application validates input,
-   but a <code>UNIQUE</code> or <code>CHECK</code> constraint also protects the data when somebody
-   edits the tables directly with <code>psql</code> or pgAdmin.</li>
-<li><strong>Availability must be date-based.</strong> Using only <code>room.status</code> would let a
-   room be booked twice for future dates; the <code>NOT EXISTS</code> overlap query is
-   the correct approach and is also fast because of
-   <code>idx_reservation_dates</code>.</li>
-<li><strong>Transactions matter.</strong> Check-in and check-out change two tables. Without
-   a transaction, a failure between the two <code>UPDATE</code>s would leave a guest in
-   a "free" room.</li>
-<li><strong>Views simplify the Python code.</strong> <code>vw_reservation_details</code> removed the
-   need to repeat a three-table join in six different screens.</li>
-<li><strong>Storing the bill amount is deliberate.</strong> <code>reservation.total_amount</code> is
-   kept even though it can be recalculated, because the tariff of a room can
-   change later and old bills must not change.</li>
-<li><strong>Small usability details matter</strong>: showing the bill before saving,
-   offering to collect payment at check-out, and printing the outstanding
-   amount in the pending-payments report make the program pleasant to use.</li>
-</ol>
-<h3 id="143-limitations-and-future-scope">14.3 Limitations and future scope</h3>
-<ul>
-<li>One payment per reservation (partial payments are not supported).</li>
-<li>No login/authentication — the menu is meant for a single front-desk
-  terminal.</li>
-<li>Availability is checked when the booking is saved, but there is no
-  database-level <code>EXCLUDE</code> constraint against two overlapping bookings
-  inserted at exactly the same moment (a single-user mini project does not
-  need it; it is mentioned as future work).</li>
-<li>Possible extensions: a Tkinter GUI, invoice printing/PDF, e-mail
-  confirmation, housekeeping module, GST calculation, and a
-  <code>room_type</code> master table with seasonal pricing.</li>
-</ul>
-<hr />
-<h2 id="15-conclusion">15. Conclusion</h2>
-<p>A complete, working Hotel Management System was designed, implemented and
-tested. The database is a normalized (3NF) PostgreSQL schema of four related
-tables with primary keys, foreign keys, <code>UNIQUE</code>, <code>NOT NULL</code> and <code>CHECK</code>
-constraints, five views and an availability query based on date overlap.
-The Python application connects through <code>psycopg2</code> and offers a simple
-menu-driven interface for customers, rooms, reservations, check-in,
-check-out, payments and reports, using parameterized SQL and transactions.</p>
-<p>The ER diagram, the relational schema, the SQL scripts and the Python code
-all describe the same four entities and the same relationships, and every
-required SQL concept — from <code>CREATE TABLE</code> to <code>GROUP BY … HAVING</code>, joins,
-subqueries and views — is demonstrated with realistic data and actual output.</p>
-<p>The project therefore fulfils the objectives of the Database Systems mini
-project: it shows database design, integrity enforcement, SQL skills and a
-functional application that interacts with the database, while remaining
-simple enough to be explained and extended in a viva.</p>
-<hr />
-<h2 id="appendix-a-how-to-create-the-database-and-run-the-project">Appendix A — How to create the database and run the project</h2>
-<h3 id="step-1-install-the-software">Step 1 — Install the software</h3>
-<ul>
-<li>Install PostgreSQL (remember the password you set for the <code>postgres</code>
-  user) and make sure the service is running.</li>
-<li>Install Python 3.10+ and the driver:</li>
-</ul>
-<p><code>bash
-  pip install psycopg2-binary</code></p>
-<h3 id="step-2-create-the-database">Step 2 — Create the database</h3>
-<p>From the <code>hotel_management_system</code> folder:</p>
-<pre><code class="language-bash">psql -U postgres -f sql/00_create_database.sql
-</code></pre>
-<p>This creates the database <code>hotel_db</code> and connects to it.</p>
-<h3 id="step-3-create-the-tables-and-load-the-sample-data">Step 3 — Create the tables and load the sample data</h3>
-<pre><code class="language-bash">psql -U postgres -d hotel_db -f sql/01_schema.sql
-psql -U postgres -d hotel_db -f sql/02_sample_data.sql
-</code></pre>
-<p><code>01_schema.sql</code> can be re-run safely (it drops and recreates the objects).
-<code>02_sample_data.sql</code> restarts the IDs and reloads the 12 + 14 + 16 + 16
-sample rows.</p>
-<h3 id="step-4-demonstrate-the-sql-queries-optional">Step 4 — Demonstrate the SQL queries (optional)</h3>
-<pre><code class="language-bash">psql -U postgres -d hotel_db -f sql/03_queries.sql
-</code></pre>
-<h3 id="step-5-configure-the-connection">Step 5 — Configure the connection</h3>
-<pre><code class="language-bash">cp .env.example .env      # Windows: copy .env.example .env
-</code></pre>
-<p>Edit <code>.env</code> and put your own PostgreSQL password.</p>
-<h3 id="step-6-run-the-application">Step 6 — Run the application</h3>
-<pre><code class="language-bash">cd app
-python main.py
-</code></pre>
-<p>The main menu appears. Type the number of a module and press ENTER.</p>
-<blockquote>
-<p><strong>Note (Windows):</strong> if <code>py</code> is the Python launcher on your system use
-<code>py main.py</code>; if <code>psql</code> is not on <code>PATH</code>, use the full path such as
-<code>"C:\Program Files\PostgreSQL\16\bin\psql.exe"</code>.</p>
-</blockquote>
-<hr />
-<h2 id="appendix-b-demonstration-sequence">Appendix B — Demonstration sequence</h2>
-<p>Suggested order for the practical exam / viva (about 12 minutes):</p>
-<table>
-<thead>
-<tr>
-<th>Step</th>
-<th>Action in the program</th>
-<th>What to show</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>Start <code>python main.py</code></td>
-<td>Connection status and row counts</td>
-</tr>
-<tr>
-<td>2</td>
-<td><strong>1 → 1</strong> add a customer</td>
-<td>New customer ID returned by <code>INSERT … RETURNING</code></td>
-</tr>
-<tr>
-<td>3</td>
-<td><strong>1 → 3</strong> search that customer</td>
-<td>Search by ID / name / phone</td>
-</tr>
-<tr>
-<td>4</td>
-<td><strong>2 → 2</strong> view all rooms</td>
-<td>14 rooms, four categories, tariffs</td>
-</tr>
-<tr>
-<td>5</td>
-<td><strong>2 → 4</strong> tariff by type</td>
-<td><code>GROUP BY</code> result inside the application</td>
-</tr>
-<tr>
-<td>6</td>
-<td><strong>3 → 2</strong> check availability</td>
-<td>Choose <code>2026-12-01</code> to <code>2026-12-03</code>; note the free rooms</td>
-</tr>
-<tr>
-<td>7</td>
-<td><strong>3 → 1</strong> book a room</td>
-<td>Guest → dates → room list → bill preview → confirmation; the amount = nights × tariff</td>
-</tr>
-<tr>
-<td>8</td>
-<td><strong>3 → 1</strong> again with the same dates and the same room</td>
-<td>Room no longer appears in the available list (no double booking)</td>
-</tr>
-<tr>
-<td>9</td>
-<td><strong>4 → 3</strong> today's expected check-ins</td>
-<td>Preparations for check-in</td>
-</tr>
-<tr>
-<td>10</td>
-<td><strong>4 → 1</strong> check-in</td>
-<td>Reservation <code>Booked → CheckedIn</code>, room <code>Available → Occupied</code></td>
-</tr>
-<tr>
-<td>11</td>
-<td><strong>5 → 1</strong> record the payment</td>
-<td>Cash / Card / UPI, status becomes <code>Paid</code></td>
-</tr>
-<tr>
-<td>12</td>
-<td><strong>4 → 2</strong> check-out</td>
-<td>Reservation <code>CheckedOut</code>, room back to <code>Available</code></td>
-</tr>
-<tr>
-<td>13</td>
-<td><strong>3 → 4</strong> view a reservation</td>
-<td>Status and payment status together</td>
-</tr>
-<tr>
-<td>14</td>
-<td><strong>6 → 2</strong> occupied rooms, <strong>6 → 6</strong> revenue, <strong>6 → 7</strong> popular room type</td>
-<td>The three main reports</td>
-</tr>
-<tr>
-<td>15</td>
-<td><code>psql -d hotel_db</code> then <code>\d reservation</code>, and run any query from <code>sql/03_queries.sql</code></td>
-<td>Table structure and SQL concepts</td>
-</tr>
-<tr>
-<td>16</td>
-<td><code>psql -d hotel_db -f sql/03_queries.sql</code></td>
-<td>All 34 queries in one go</td>
-</tr>
-</tbody>
-</table>
-<p>Useful viva questions prepared by the design: <em>Why is <code>total_amount</code> stored
-even though it can be calculated?</em> (tariff history) · <em>How is double booking
-prevented?</em> (overlap test with <code>NOT EXISTS</code>) · <em>Which normal form and why?</em>
-(3NF, no transitive dependency) · <em>What happens if a customer with bookings
-is deleted?</em> (<code>ON DELETE RESTRICT</code> protects the history) · <em>Where is SQL
-injection prevented?</em> (parameterized queries in <code>db.py</code>).</p>
-<hr />
-<h2 id="appendix-c-project-file-structure">Appendix C — Project file structure</h2>
-<pre><code>hotel_management_system/
-├── README.md                  quick start guide
-├── .env.example               connection settings template
-├── sql/
-│   ├── 00_create_database.sql create database hotel_db
-│   ├── 01_schema.sql          tables, constraints, indexes, views
-│   ├── 02_sample_data.sql     12 customers, 14 rooms, 16 reservations, 16 payments
-│   └── 03_queries.sql         34 demonstration queries
-├── app/
-│   ├── main.py                entry point and main menu
-│   ├── config.py              reads .env / environment variables
-│   ├── db.py                  psycopg2 wrapper (queries, transactions, errors)
-│   ├── ui.py                  tables, messages and validated input helpers
-│   ├── customers.py           module 1 - customer management
-│   ├── rooms.py               module 2 - room management
-│   ├── reservations.py        module 3 - reservation management
-│   ├── frontdesk.py           module 4 - check-in / check-out
-│   ├── payments.py            module 5 - payment management
-│   └── reports.py             module 6 - reports and search
-├── docs/
-│   ├── PROJECT_REPORT.md      this report
-│   ├── PROJECT_REPORT.docx    the same report, ready to print
-│   ├── ER_DIAGRAM.png / .svg  ER diagram
-│   ├── SAMPLE_RUN_OUTPUT.txt  text transcript of a demo session
-│   ├── screenshots/           21 screenshots used in this report
-│   └── tools/
-│       ├── make_er_diagram.py generate the ER diagram
-│       ├── make_screenshots.py regenerate the screenshots
-│       ├── make_report_docx.py convert this report to Word
-│       └── build_website.py   generate the project website
-└── website/
-    ├── index.html             one-page project site (generated data)
-    ├── report.html            this report, rendered for the browser
-    ├── assets/                CSS, JavaScript, generated project data
-    ├── screenshots/           copies used by the site
-    └── downloads/             every project file, ready to download
-</code></pre>
-<hr />
-<h3 id="references">References</h3>
-<ol>
-<li>Elmasri R. and Navathe S. B., <em>Fundamentals of Database Systems</em>, 7th
-   edition, Pearson, 2016.</li>
-<li>Silberschatz A., Korth H. F. and Sudarshan S., <em>Database System
-   Concepts</em>, 7th edition, McGraw-Hill, 2019.</li>
-<li>PostgreSQL Global Development Group, <em>PostgreSQL 16 Documentation</em>,
-   <a href="https://www.postgresql.org/docs/16/">https://www.postgresql.org/docs/16/</a>.</li>
-<li>Psycopg Development Team, <em>Psycopg 2 Documentation</em>,
-   <a href="https://www.psycopg.org/docs/">https://www.psycopg.org/docs/</a>.</li>
-<li>Python Software Foundation, <em>The Python Tutorial</em>,
-   <a href="https://docs.python.org/3/tutorial/">https://docs.python.org/3/tutorial/</a>.</li>
-</ol>
-  </article>
+      <h3>12.4 Project website (single place for everything)</h3>
+      <p>The <code>website/</code> folder contains a static, dependency-free website that combines every deliverable of the project in one place:</p>
+      <div class="scroll-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Page / section</th>
+              <th>Content</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Overview</td>
+              <td>Abstract, objectives, modules, existing vs proposed system, setup</td>
+            </tr>
+            <tr>
+              <td><strong>Application</strong></td>
+              <td>What it does, six modules, booking/availability/billing logic, visitor actions</td>
+            </tr>
+            <tr>
+              <td>Database design</td>
+              <td>ER diagram, relational schema, constraints, normalization (1NF–3NF)</td>
+            </tr>
+            <tr>
+              <td>Query gallery</td>
+              <td>15 key queries with their <strong>live</strong> PostgreSQL result tables</td>
+            </tr>
+            <tr>
+              <td>Screenshots</td>
+              <td>The 21 console screenshots with captions</td>
+            </tr>
+            <tr>
+              <td>All files</td>
+              <td>Every script, source file, report and image, ready to download</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="7-database-design">
+      <h2>7. Database design</h2>
+      <p>ER diagram, relational schema, constraints, normalization (1NF–3NF)</p>
+      <img src="Hotel_management_DBMS.png" alt="Hotel Management DBMS ER Diagram" />
+    </section>
+
+    <section id="11-query-gallery">
+      <h2>11. Query gallery</h2>
+      <p>15 key queries with their <strong>live</strong> PostgreSQL result tables</p>
+      
+      <h3>11.1 Basic SELECT</h3>
+      <pre><code class="language-sql">-- Q1: basic select
+SELECT * FROM room LIMIT 5;</code></pre>
+      <div class="scroll-container">
+        <table>
+          <thead>
+            <tr>
+              <th>room_id</th>
+              <th>room_number</th>
+              <th>room_type</th>
+              <th>price_per_night</th>
+              <th>status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>101</td><td>101</td><td>Single</td><td>1500.00</td><td>Available</td></tr>
+            <tr><td>102</td><td>102</td><td>Single</td><td>1500.00</td><td>Occupied</td></tr>
+            <tr><td>103</td><td>103</td><td>Single</td><td>1500.00</td><td>Available</td></tr>
+            <tr><td>104</td><td>104</td><td>Double</td><td>4200.00</td><td>Available</td></tr>
+            <tr><td>105</td><td>105</td><td>Double</td><td>4200.00</td><td>Occupied</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ... other queries omitted for brevity but kept in full report ... -->
+      <h3>7.2 Table: <code>customer</code></h3>
+      <div class="scroll-container">
+        <table class="fixed">
+          <thead>
+            <tr>
+              <th>Column</th>
+              <th>Type</th>
+              <th>Constraints</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-full="<code>customer_id</code>"><code>customer_id</code></td>
+              <td data-full="<code>SERIAL</code>"><code>SERIAL</code></td>
+              <td data-full="<strong>PRIMARY KEY</strong>"><strong>PRIMARY KEY</strong></td>
+              <td data-full="Surrogate key, auto-incremented">Surrogate key, auto-incremented</td>
+            </tr>
+            <tr>
+              <td data-full="<code>full_name</code>"><code>full_name</code></td>
+              <td data-full="<code>VARCHAR(100)</code>"><code>VARCHAR(100)</code></td>
+              <td data-full="<code>NOT NULL</code>, <code>CHECK (length ≥ 3)</code>"><code>NOT NULL</code>, <code>CHECK (length ≥ 3)</code></td>
+              <td data-full="Guest name">Guest name</td>
+            </tr>
+            <tr>
+              <td data-full="<code>email</code>"><code>email</code></td>
+              <td data-full="<code>VARCHAR(120)</code>"><code>VARCHAR(120)</code></td>
+              <td data-full="<code>NOT NULL</code>, <code>UNIQUE</code>, <code>CHECK</code> contains <code>@</code> and <code>.</code>"><code>NOT NULL</code>, <code>UNIQUE</code>, <code>CHECK</code> contains <code>@</code> and <code>.</code></td>
+              <td data-full="Contact e-mail">Contact e-mail</td>
+            </tr>
+            <tr>
+              <td data-full="<code>phone</code>"><code>phone</code></td>
+              <td data-full="<code>VARCHAR(15)</code>"><code>VARCHAR(15)</code></td>
+              <td data-full="<code>NOT NULL</code>, <code>UNIQUE</code>, <code>CHECK</code> 10 digits"><code>NOT NULL</code>, <code>UNIQUE</code>, <code>CHECK</code> 10 digits</td>
+              <td data-full="Mobile number">Mobile number</td>
+            </tr>
+            <tr>
+              <td data-full="<code>address</code>"><code>address</code></td>
+              <td data-full="<code>VARCHAR(200)</code>"><code>VARCHAR(200)</code></td>
+              <td data-full="—">—</td>
+              <td data-full="Postal address (optional)">Postal address (optional)</td>
+            </tr>
+            <tr>
+              <td data-full="<code>id_proof_type</code>"><code>id_proof_type</code></td>
+              <td data-full="<code>VARCHAR(20)</code>"><code>VARCHAR(20)</code></td>
+              <td data-full="<code>NOT NULL</code>, <code>CHECK IN ('Aadhaar','Passport','Driving Licence','Voter ID')</code>"><code>NOT NULL</code>, <code>CHECK IN ('Aadhaar','Passport','Driving Licence','Voter ID')</code></td>
+              <td data-full="Type of government ID">Type of government ID</td>
+            </tr>
+            <tr>
+              <td data-full="<code>id_proof_number</code>"><code>id_proof_number</code></td>
+              <td data-full="<code>VARCHAR(30)</code>"><code>VARCHAR(30)</code></td>
+              <td data-full="<code>NOT NULL</code>, <code>UNIQUE</code>"><code>NOT NULL</code>, <code>UNIQUE</code></td>
+              <td data-full="ID number">ID number</td>
+            </tr>
+            <tr>
+              <td data-full="<code>created_at</code>"><code>created_at</code></td>
+              <td data-full="<code>TIMESTAMP</code>"><code>TIMESTAMP</code></td>
+              <td data-full="<code>NOT NULL DEFAULT CURRENT_TIMESTAMP</code>"><code>NOT NULL DEFAULT CURRENT_TIMESTAMP</code></td>
+              <td data-full="Registration time">Registration time</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>7.3 Table: <code>room</code></h3>
+      <div class="scroll-container">
+        <table class="fixed">
+          <thead>
+            <tr>
+              <th>Column</th>
+              <th>Type</th>
+              <th>Constraints</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-full="<code>room_id</code>"><code>room_id</code></td>
+              <td data-full="<code>SERIAL</code>"><code>SERIAL</code></td>
+              <td data-full="<strong>PRIMARY KEY</strong>"><strong>PRIMARY KEY</strong></td>
+              <td data-full="Surrogate key">Surrogate key</td>
+            </tr>
+            <tr>
+              <td data-full="<code>room_number</code>"><code>room_number</code></td>
+              <td data-full="<code>INTEGER</code>"><code>INTEGER</code></td>
+              <td data-full="<code>UNIQUE</code>, <code>CHECK (100 ≤ room_number ≤ 200)</code>"><code>UNIQUE</code>, <code>CHECK (100 ≤ room_number ≤ 200)</code></td>
+              <td data-full="Room identifier">Room identifier</td>
+            </tr>
+            <!-- ... other rows ... -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="13-screenshots">
+      <h2>13. Screenshots and sample outputs</h2>
+      <p>All screenshots are real console output of the program (generated by <code>docs/tools/make_screenshots.py</code>) and were taken on the sample database.</p>
+      <h3>13.1 Main menu and database connection</h3>
+      <p><img alt="Main menu" src="screenshots/01_main_menu.png" /></p>
+      <p><em>Figure 13.1 — Startup screen: the connection to <code>hotel_db</code> is verified and the row counts prove that the sample data is loaded.</em></p>
+      <!-- ... other screenshots ... -->
+    </section>
+
+    <section id="all-files">
+      <h2>All files</h2>
+      <p>Every script, source file, report and image, ready to download</p>
+      <ul>
+        <li><code>app/main.py</code> — Banner, connection test, main menu, calls the module menus</li>
+        <li><code>app/config.py</code> — Reads <code>.env</code> / environment variables for the connection settings</li>
+        <li><code>app/db.py</code> — <code>Database</code> class: <code>query</code>, <code>query_one</code>, <code>scalar</code>, <code>execute</code>, <code>execute_returning</code>, <code>run_in_transaction</code>; converts PostgreSQL errors into readable messages</li>
+        <li><code>app/ui.py</code> — Table printing, success/error/warning messages, and all validated input helpers (<code>ask</code>, <code>ask_int</code>, <code>ask_money</code>, <code>ask_date</code>, <code>ask_choice</code>, <code>ask_email</code>, <code>ask_phone</code>, <code>confirm</code>)</li>
+        <li><code>app/customers.py</code> — Customer management module</li>
+        <li><code>app/rooms.py</code> — Room management module + availability query</li>
+        <li><code>app/reservations.py</code> — Reservation management module</li>
+        <li><code>app/frontdesk.py</code> — Check-in / check-out module</li>
+        <li><code>app/payments.py</code> — Payment management module</li>
+        <li><code>app/reports.py</code> — Reports and search module</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 Hotel Management System Project — Generated on 2026-11-09</p>
+    </footer>
+  </div>
 </body>
 </html>

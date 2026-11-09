@@ -43,8 +43,6 @@
   function highlight(code, language) {
     var pattern, kinds;
     if (language === "sql") {
-      // One left-to-right scan: a -- comment wins over a quote inside it,
-      // a string wins over a keyword inside it, and so on.
       pattern = new RegExp(
         "(--[^\\n]*)" +
         "|('(?:''|[^'])*')" +
@@ -54,7 +52,7 @@
       pattern = new RegExp(
         "(#[^\\n]*)" +
         "|(\"\"\"[\\s\\S]*?\"\"\"|'''[\\s\\S]*?'''" +
-        "|\"(?:\\\\.|[^\"\\\\])*\"|'(?:\\\\.|[^'\\\\])*')" +
+        "|\"(?:\\\\.|[^\"\\\\])*\"|'(?:\\\\.|[^'\\\\\\\\])*')" +
         "|(\\b(?:" + PY_WORDS.join("|") + ")\\b)" +
         "|(\\b\\d+(?:\\.\\d+)?\\b)", "g");
     }
@@ -233,7 +231,7 @@
     ["INNER JOIN", "Q18, Q19", "Three-table join for reservations"],
     ["LEFT JOIN", "Q20, Q21", "Customers / rooms with no bookings"],
     ["Subqueries", "Q22–Q26", "IN, EXISTS, scalar, correlated, derived table"],
-    ["Views", "Q29–Q33", "Five views used by the application"],
+    ["Views", "Q29–Q33", "The five views used by the application"],
     ["Constraints", "01_schema.sql", "PK, FK, UNIQUE, NOT NULL, CHECK"],
     ["Normalisation", "Report §10", "Up to third normal form (3NF)"],
     ["Transactions", "frontdesk.py", "Check-in / check-out are atomic"]
@@ -279,14 +277,17 @@
             else if (!numeric) text = String(value);
             else if (Number.isInteger(value) && !moneyColumn[columnIndex]) text = value.toLocaleString("en-IN");
             else text = money(value);
-            return "<td" + (numeric ? ' style="text-align:right"' : "") + ">" + esc(text) + "</td>";
+            var cls = "num" + (numeric ? " right" : "");
+            var style = numeric ? ' style="text-align:right; max-width:120px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"' : "";
+            return "<td class=\"" + cls + "\"" + style + ">" + esc(text) + "</td>";
           }).join("") + "</tr>";
         }).join("");
         return '<article class="query-card"><div class="query-head"><span class="query-num">' +
           esc(query.number) + "</span><h4>" + esc(query.title) + '</h4><span class="concept">' +
           esc(query.concept) + "</span></div>" +
           '<div class="query-body"><div class="query-sql"><pre>' + highlight(query.sql, "sql") + "</pre></div>" +
-          '<div class="query-out"><table><thead><tr>' +
+          '<div class="query-out"><table style="table-layout:fixed; width:100%; border-collapse:collapse;">' +
+          "<thead><tr>" +
           query.columns.map(function (column) { return "<th>" + esc(column) + "</th>"; }).join("") +
           "</tr></thead><tbody>" + rows + "</tbody></table>" +
           '<span class="rowcount">' + query.rows.length + " row(s) · live PostgreSQL output</span></div></div></article>";
@@ -391,7 +392,7 @@
       renderStats();
       renderModules();
       renderSchema();
-      buildViewer(el("sqlViewer"), DATA.sql, "sql", { prefix: "sql/" });
+      // REMOVED: buildViewer(el("sqlViewer"), DATA.sql, "sql", { prefix: "sql/" });
       buildViewer(el("appViewer"), DATA.app, "python", { prefix: "app/" });
       renderCoverage();
       renderQueries();
